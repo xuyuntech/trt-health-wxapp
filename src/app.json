@@ -1,0 +1,27 @@
+{
+  "pages":[
+    "pages/index/index",
+    "pages/visitorMgr/index",
+    "pages/orderReg/index",
+    "pages/hospitalDetail/index",
+    "pages/doctorDetail/index",
+    "pages/logs/logs",
+    "pages/mine/index"
+  ],
+  "tabBar": {
+    "selectedColor": "#2d8cf0",
+    "list": [{
+      "pagePath": "pages/index/index",
+      "text": "挂号"
+    }, {
+      "pagePath": "pages/mine/index",
+      "text": "我的"
+    }]
+  },
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "Wechat",
+    "navigationBarTextStyle":"black"
+  }
+}

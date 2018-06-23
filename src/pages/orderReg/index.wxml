@@ -1,0 +1,45 @@
+<wxs module="tools">
+var getChufuNameByIndex = function(index, arr){
+  if (typeof index === 'undefined' || typeof arr === 'undefined') {
+    return '请选择';
+  }
+  var item = arr[index];
+  if (!item) {
+    return '请选择';
+  }
+  return item.name;
+}
+module.exports = {
+  getChufuNameByIndex: getChufuNameByIndex,
+}
+</wxs>
+
+<view class="container">
+  <i-panel>
+    <view style="padding:15px;" class="card">
+      <image src="https://i.loli.net/2017/08/21/599a521472424.jpg" style="width:50px;height:50px;min-width:50px;"/>
+      <view class="card-right">
+        <view><text class="fs-normal">医师名称</text><text class="clr-sub fs-small ml-5">title</text></view>
+        <view><text class="clr-warning fs-small">评分 10</text></view>
+      </view>
+    </view>
+    <view style="padding: 0 15px 15px 15px;">
+      <view>就诊门店: 河东路店</view>
+      <view>就诊时间: 2018-12-12</view>
+      <view>挂号费用: ¥80.00</view>
+    </view>
+  </i-panel>
+  <view class="whitespace" />
+  <i-cell-group>
+    <i-cell title="就诊人" value="请选择" is-link></i-cell>
+    <i-cell title="初/复诊" value="{{tools.getChufuNameByIndex(props.store.selectedChufuIndex, props.store.chufuActions)}}" is-link bind:click="showChufuAction"></i-cell>
+    <i-cell title="疾病信息" value="{{props.store.diseaseInfo?'':'选填'}}" bind:click="showDiseaseInfoModal">
+      <text wx:if="{{props.store.diseaseInfo !== ''}}" class="clr-sub fs-small">{{props.store.diseaseInfo}}</text>
+    </i-cell>
+  </i-cell-group>
+  <i-button type="primary">下一步</i-button>
+  <i-modal title="标题" visible="{{ props.store.diseaseInfoModalShow }}"  bind:cancel="cancelDiseaseInfo"  bind:ok="submitDiseaseInfo">
+    <textarea value="{{props.store.diseaseInfo}}" bindinput="diseaseInfoChange" style="width: 100%;height:100px;text-align:left;padding: 0 5px;box-sizing: border-box;" placeholder="这里输入疾病信息" auto-focus></textarea>
+  </i-modal>
+  <i-action-sheet visible="{{ props.store.chufuShow }}" actions="{{ props.store.chufuActions }}" show-cancel bind:cancel="hideChufuAction" bind:click="submitChufuAction" />
+</view>

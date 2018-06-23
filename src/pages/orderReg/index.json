@@ -1,0 +1,12 @@
+
+{
+  "usingComponents": {
+    "i-action-sheet": "../../iview/action-sheet/index",
+    "i-modal": "../../iview/modal/index",
+    "i-cell-group": "../../iview/cell-group/index",
+    "i-button": "../../iview/button/index",
+    "i-cell": "../../iview/cell/index",
+    "i-card": "../../iview/card/index",
+    "i-panel": "../../iview/panel/index"
+  }
+}

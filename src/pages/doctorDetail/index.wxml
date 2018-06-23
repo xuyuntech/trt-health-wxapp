@@ -1,0 +1,31 @@
+
+<view class="container">
+  <i-panel>
+    <view style="padding:15px;" class="card">
+      <image src="https://i.loli.net/2017/08/21/599a521472424.jpg" style="width:50px;height:50px;min-width:50px;"/>
+      <view class="card-right">
+        <view><text class="fs-normal">医师名称</text><text class="clr-sub fs-small ml-5">title</text></view>
+        <view><text class="clr-warning fs-small">评分 10</text></view>
+      </view>
+    </view>
+  </i-panel>
+  <i-panel title="排班信息">
+    <view style="padding:15px;">
+      <text>排班信息排班信息排班信息排班信息排班信息排班信息排班信息</text>
+    </view>
+  </i-panel>
+  <i-panel title="排班详情">
+    <view class="arrg-item" wx:key="hospitalID" wx:for="{{props.store.arrangement_list}}" wx:for-index="itemIndex">
+      <view class="mb-5"><text>* {{item.hospital.name}}</text></view>
+      <view class="arrg-content" wx:key="arrangementKey" wx:for="{{item.list}}">
+        <view class="arrg-content-l">
+          <view>{{item.visitDate}}</view>
+          <view>挂号费: <text class="clr-warning">¥{{item.price}}</text></view>
+        </view>
+        <view>
+          <i-button type="primary" size="small" i-class="reg-btn" data-arrangement-key="{{item.arrangementKey}}" bind:click="register">预约</i-button>
+        </view>
+      </view>
+    </view>
+  </i-panel>
+</view>

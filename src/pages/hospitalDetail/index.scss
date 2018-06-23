@@ -1,0 +1,42 @@
+
+@import 'share';
+
+.motto {
+	@extend %center-flex;
+
+	margin-top: 10px;
+	align-items: center;
+}
+
+.face {
+	$r: 24px;
+
+	width: $r;
+	height: $r;
+	border-radius: 50%;
+	margin-right: 10px;
+}
+
+.powered {
+	margin-top: 30px;
+	font-size: 11px;
+	color: gray;
+}
+
+.search-input{
+	display: flex;
+	align-items: center;
+}
+
+.list-item{
+	display: flex;
+	align-items: flex-start;
+	flex-direction: row;
+	.item-content{
+		margin: 0 5px;
+		.item-tags{
+			margin-right: 5px;
+		}
+	}
+}
+

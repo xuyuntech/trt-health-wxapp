@@ -1,0 +1,9 @@
+{
+    "navigationBarTitleText": "我的",
+    "usingComponents": {
+        "i-card": "../../iview/card/index",
+        "i-avatar": "../../iview/avatar/index",
+        "i-cell-group": "../../iview/cell-group/index",
+        "i-cell": "../../iview/cell/index"
+      }
+}

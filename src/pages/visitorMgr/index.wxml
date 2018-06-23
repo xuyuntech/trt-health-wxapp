@@ -1,0 +1,34 @@
+<wxs module="tools">
+var getGender = function(gender){
+  return gender == 'MALE' ? '男' : '女';
+};
+var getAge = function(birthday){
+  return 1;
+};
+module.exports = {
+  getGender: getGender,
+  getAge: getAge,
+};
+</wxs>
+<view class="container">
+  <view class="whitespace"></view>
+  <i-cell-group>
+    <i-cell wx:key="sid" wx:for="{{props.store.visitors}}">
+      <view>
+        <text class="fs-normal mr-5">{{item.name}}</text>
+        <text class="fs-small mr-5">{{tools.getGender(item.gender)}}</text>
+        <text class="fs-small">{{tools.getAge(item.birthday)}}</text>
+      </view>
+      <view>
+        <text class="clr-sub fs-small">{{item.phone}}</text>
+      </view>
+      <view>
+        <text class="clr-sub fs-small">{{item.sid}}</text>
+      </view>
+      <view>
+        <text class="clr-sub fs-small">{{item.address}}</text>
+      </view>
+    </i-cell>
+  </i-cell-group>
+  <i-button bind:click="add" type="primary" size="default">添加</i-button>
+</view>
