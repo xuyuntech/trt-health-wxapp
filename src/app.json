@@ -2,13 +2,15 @@
   "pages":[
     "pages/index/index",
     "pages/visitorMgr/index",
+    "pages/admin/index/index",
+    "pages/admin/arrangement/index",
     "pages/orderReg/index",
     "pages/hospitalDetail/index",
     "pages/doctorDetail/index",
     "pages/logs/logs",
     "pages/mine/index"
   ],
-  "tabBar": {
+  "tabBar1": {
     "selectedColor": "#2d8cf0",
     "list": [{
       "pagePath": "pages/index/index",

@@ -1,0 +1,7 @@
+
+<view class="container">
+  <view class="whitespace"></view>
+  <i-cell-group>
+    <i-cell is-link url="/pages/admin/arrangement">排班管理</i-cell>
+  </i-cell-group>
+</view>
