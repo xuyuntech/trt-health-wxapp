@@ -1,8 +1,7 @@
 <template name="tabbar">
-  <i-tab-bar current="{{ current }}" bindchange="handleChange">
-    <i-tab-bar-item key="homepage" icon="homepage" current-icon="homepage_fill" title="Home"></i-tab-bar-item>
-    <i-tab-bar-item key="group" icon="group" current-icon="group_fill" title="Friends"></i-tab-bar-item>
-    <i-tab-bar-item key="remind" icon="remind" current-icon="remind_fill" count="3" title="Notice"></i-tab-bar-item>
-    <i-tab-bar-item key="mine" icon="mine" current-icon="mine_fill" dot title="My"></i-tab-bar-item>
+  <i-tab-bar current="{{ current }}" i-class="tabbar" bindchange="handleTabbarChange">
+    <i-tab-bar-item key="GUAHAO" icon="homepage" current-icon="homepage_fill" title="挂号"></i-tab-bar-item>
+    <i-tab-bar-item key="MINE" icon="mine" current-icon="mine_fill" dot title="我的"></i-tab-bar-item>
+    <i-tab-bar-item key="ADMIN" icon="remind" current-icon="remind_fill" count="3" title="管理员"></i-tab-bar-item>
   </i-tab-bar>
 </template>

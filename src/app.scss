@@ -43,3 +43,12 @@ page {
 .whitespace{
 	height: 10px;
 }
+
+.tabbar{
+	position: fixed !important;
+	bottom: 0;
+}
+
+.container.tabbar-fixed {
+	margin-bottom: 50px !important;
+}

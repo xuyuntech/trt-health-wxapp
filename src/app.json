@@ -10,7 +10,7 @@
     "pages/logs/logs",
     "pages/mine/index"
   ],
-  "tabBar1": {
+  "tabBar": {
     "selectedColor": "#2d8cf0",
     "list": [{
       "pagePath": "pages/index/index",
