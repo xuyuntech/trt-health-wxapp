@@ -12,7 +12,7 @@ App({
 			this.login();
 		}
 		else {
-			this.auth();
+			// this.auth();
 		}
 	},
 	auth: function () {
@@ -69,13 +69,14 @@ App({
 						url: `http://localhost:3000/auth/wechat/callback?code=${code}`,
 						success: function (res) {
 							console.log('wechat callback res: ', res);
-							const { data } = res.data;
-							if (!data) {
+							const { result } = res.data;
+							if (!result) {
 								console.error('auth failed: ', res);
 								return;
 							}
-							const accessToken = data['access-token'];
-							const userID = data['user-id'];
+							const { accessToken, userID } = result;
+							// const accessToken = data['access-token'];
+							// const userID = data['user-id'];
 							wx.setStorageSync('access_token', accessToken);
 							wx.setStorageSync('user_id', userID);
 							wx.getUserInfo({
@@ -85,7 +86,7 @@ App({
 									// 可以将 res 发送给后台解码出 unionId
 									wx.request({
 										method: 'HEAD',
-										url: `http://localhost:3000/api/Patient/${userID}`,
+										url: `http://localhost:3000/api/Patient/wechat.${userID}`,
 										header: {
 											'X-Access-Token': accessToken,
 										},
