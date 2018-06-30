@@ -15,49 +15,6 @@ App({
 			// this.auth();
 		}
 	},
-	auth: function () {
-		const self = this;
-		const accessToken = wx.getStorageSync('access_token');
-		const userID = wx.getStorageSync('user_id');
-		wx.request({
-			url: `http://localhost:3000/api/Patient/${userID}`,
-			header: {
-				'X-Access-Token': accessToken,
-			},
-			success: function (res) {
-				const { statusCode } = res;
-				if (statusCode !== 200) {
-					self.login();
-					return;
-				}
-				wx.getUserInfo({
-					success: (res) => {
-						console.log('userinfo', res);
-						const { userInfo } = res;
-						const { nickName, gender, city, avatarUrl } = userInfo;
-						// 可以将 res 发送给后台解码出 unionId
-						wx.request({
-							method: 'PUT',
-							url: `http://localhost:3000/api/Patient/${userID}`,
-							header: {
-								'X-Access-Token': accessToken,
-							},
-							data: {
-								id: userID,
-								name: nickName,
-								gender: gender === 1 ? 'MALE' : 'FEMALE',
-								avatar: avatarUrl,
-							},
-							success: function (res) {
-								console.log('res>>', res);
-							},
-						});
-					},
-				});
-			},
-		});
-
-	},
 	login: function () {
 		// 登录
 		wx.login({
@@ -83,35 +40,25 @@ App({
 								success: (res) => {
 									console.log('userinfo', res);
 									const { userInfo } = res;
+									wx.setStorageSync('user_info', userInfo);
 									// 可以将 res 发送给后台解码出 unionId
 									wx.request({
-										method: 'HEAD',
-										url: `http://localhost:3000/api/Patient/wechat.${userID}`,
+										method: 'POST',
+										url: 'http://localhost:3002/auth/wechat/reg',
 										header: {
 											'X-Access-Token': accessToken,
+											'X-Access-UserID': userID,
+										},
+										data: {
+											userInfo,
 										},
 										success: function (res) {
-											console.log('res>>', res);
-											const { statusCode } = res;
-											if (statusCode === 200) {
-												console.warn('Patient exists already:', userID);
-
+											if (res.statusCode !== 200) {
+												console.error('auth/wechat/reg error', res);
+												return;
 											}
-											else if (statusCode === 404) {
-												wx.request({
-													method: 'POST',
-													url: 'http://localhost:3001/auth/add_participant',
-													header: {
-														'X-Access-Token': accessToken,
-													},
-													data: {
-														userID,
-														...userInfo,
-													},
-													success: function (res) {
-														console.log('res>>', res);
-													},
-												});
+											if (res.data.status !== 0) {
+												console.error('auth/wechat/reg failed', res);
 											}
 										},
 									});
