@@ -3,16 +3,16 @@
   <i-cell-group>
     <i-cell>
       <view style="display:flex;align-items:center;">
-        <i-avatar src="https://i.loli.net/2017/08/21/599a521472424.jpg" size="large"></i-avatar>
+        <i-avatar src="{{props.store.userInfo.avatarUrl}}" size="large"></i-avatar>
         <view class="ml-5">
-          <text>我的名字</text>
+          <text>{{props.store.userInfo.nickName}}</text>
         </view>
       </view>
     </i-cell>
   </i-cell-group>
   <view class="whitespace"></view>
   <i-cell-group>
-    <i-cell title="就诊人管理" is-link url="/pages/visitorMgr/index"></i-cell>
-    <i-cell title="挂号记录"  is-link></i-cell>
+    <i-cell title="就诊人管理" is-link url="/pages/visitorMgr/index?from=mine"></i-cell>
+    <i-cell title="挂号记录"  is-link url="/pages/registerHistories/index"></i-cell>
   </i-cell-group>
 </view>

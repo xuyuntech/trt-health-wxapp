@@ -1,0 +1,60 @@
+<view class="container">
+    <!-- <view class="search-bar">
+        <view class="search-bar-input">
+            <i-icon type="search" size="20" color="#80848f" />
+            <input value="{{ value1 }}" autofocus placeholder="就诊人 身份证/手机号" />
+        </view>
+    </view>
+    <view class="search-tab">
+        <view class="search-tab-item">
+            <picker mode="date" value="{{date}}" start="2015-09-01" end="2017-09-01" bindchange="bindDateChange">
+                <view class="picker">
+                选择日期 <i-icon type="unfold" size="20" color="#80848f" />
+                </view>
+            </picker>
+        </view>
+        <view class="search-tab-item">
+            <picker mode="date" value="{{date}}" start="2015-09-01" end="2017-09-01" bindchange="bindDateChange">
+                <view class="picker">
+                选择门店 <i-icon type="unfold" size="20" color="#80848f" />
+                </view>
+            </picker>
+        </view>
+        <view class="search-tab-item">
+            <picker mode="date" value="{{date}}" start="2015-09-01" end="2017-09-01" bindchange="bindDateChange">
+                <view class="picker">
+                选择医师 <i-icon type="unfold" size="20" color="#80848f" />
+                </view>
+            </picker>
+        </view>
+    </view> -->
+    <view class="reg-list">
+        <view wx:if="{{props.store.registerItems.length == 0}}">
+            <view class="mv-5 clr-sub txt-center">{{props.store.listLoadingMsg}}</view>
+        </view>
+        <view data-id="{{item.id}}" bindtap="openDetail" wx:key="id" wx:for="{{props.store.registerItems}}" class="card">
+            <view class="card-header">
+                <view class="card-title">{{item.arrangementHistory.visitDate}} {{item.arrangementHistory.visitTime == 'AM'?'上午':'下午'}}</view>
+                <view class="card-actions">{{item.state}}</view>
+            </view>
+            <view class="card-body">
+                <view class="detail-info">
+                    <view style="flex:1;">
+                        <view class="mb-3">
+                            <text class="font-bold">{{item.visitor.realName}}</text> <text class="ml-5">{{item.visitor.gender == 'MALE'?'男':'女'}} {{item.visitor.phone}}</text></view>
+                        <view class="fs-small mb-3"><text class="clr-sub">{{item.visitor.sid}}</text></view>
+                        <view class="fs-small mb-3">
+                            <text class="clr-sub">医院: </text><text>{{item.arrangementHistory.hospital.name}}</text>
+                        </view>
+                        <view class="fs-small mb-3">
+                            <text class="clr-sub">医师: </text>{{item.arrangementHistory.doctor.realName}}
+                        </view>
+                    </view>
+                    <view>
+                        <i-icon type="enter" size="20" color="#80848f" />
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>

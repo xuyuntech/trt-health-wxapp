@@ -1,0 +1,12 @@
+{
+    "navigationBarTitleText": "就诊人管理",
+    "usingComponents": {
+        "i-card": "../../iview/card/index",
+        "i-button": "../../iview/button/index",
+        "i-input": "../../iview/input/index",
+        "i-avatar": "../../iview/avatar/index",
+        "i-cell-group": "../../iview/cell-group/index",
+        "i-action-sheet": "../../iview/action-sheet/index",
+        "i-cell": "../../iview/cell/index"
+      }
+}

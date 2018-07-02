@@ -1,4 +1,6 @@
-import { flow } from 'lodash';
+
+import { request } from '../../utils';
+import { API } from '../../const';
 import { observer } from '../../libs/observer';
 import store from './store';
 
@@ -14,16 +16,33 @@ Page(observer(
 		handleChange({detail: {key}}) {
 			this.props.store.current = key;
 		},
+		checkLogin() {
+			if (!app.isLogin()) {
+				setTimeout(() => {
+					this.checkLogin();
+				}, 1000);
+			}
+			else {
+				wx.switchTab({url: '/pages/hospitals/index'});
+			}
+		},
 		async onLoad() {
 			await delay();
-
-			const log = flow(() => {
-				console.log('is wechat mini program: ', __WECHAT__);
-				console.log('is alipay mini program: ', __ALIPAY__);
-				console.log('DEV: ', __DEV__);
-			});
-
-			log();
+			this.checkLogin();
+			// try {
+			// 	const data = await request({
+			// 		url: API.Hospitals.Query(),
+			// 	});
+			// 	console.log(data);
+			// 	store.hospitals = (data.results || []).map((item) => ({
+			// 		...item,
+			// 		link: `/pages/hospitalDetail/index?id=${item.id}`,
+			// 		phone: item.phone1 ? `${item.phone1}-${item.phone2}` : item.phone2,
+			// 	}));
+			// }
+			// catch (err) {
+			// 	console.error(err);
+			// }
 		},
 	},
 ));

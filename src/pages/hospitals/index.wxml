@@ -1,8 +1,8 @@
 <view class="container">
-  <!-- <swiper indicator-dots="{{props.store.indicatorDots}}"
+  <swiper indicator-dots="{{props.store.indicatorDots}}"
     autoplay="{{props.store.autoplay}}" interval="{{props.store.interval}}" duration="{{props.store.duration}}">
     <swiper-item wx:key="item" wx:for="{{props.store.imgUrls}}">
-      <image src="{{item}}" class="slide-image" width="355" height="150"/>
+      <image src="{{item}}" class="slide-image" style="width: 100%;"/>
     </swiper-item>
   </swiper>
   <i-tabs current="{{ props.store.current }}" bindchange="handleChange">
@@ -12,7 +12,7 @@
   </i-tabs>
   <i-cell-group class="list">
     <view class="help-text" wx:if="{{props.store.hospitals.length == 0}}">
-      暂无数据
+      加载中
     </view>
     <i-cell wx:key="item" wx:for="{{props.store.hospitals}}" is-link url="{{item.link}}">
       <view class="list-item">
@@ -30,5 +30,5 @@
         </view>
       </view>
     </i-cell>
-  </i-cell-group> -->
+  </i-cell-group>
 </view>

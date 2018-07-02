@@ -10,12 +10,12 @@
         <image src="http://via.placeholder.com/50x50" style="width:50px;height:50px;min-width:50px;border-radius:50%;"/>
         <view class="item-content">
           <view>
-            <text>{{item.name}}</text>
-            <text class="clr-sub fs-small">{{item.title}}</text>
+            <text>{{item.realName}}</text>
+            <text class="ml-5 clr-sub fs-small">{{item.title}}</text>
           </view>
           <view>
             <text class="item-tags clr-warning fs-small">评分 10</text>
-            <text class="item-tags clr-sub fs-small">预约量 {{item.reg_count}}</text>
+            <text class="item-tags clr-sub fs-small">预约量 {{item.reservationQuantity}}</text>
           </view>
           <view>
             <text class="clr-sub fs-small">{{item.description}}</text>

@@ -1,0 +1,97 @@
+<view wx:if="{{registerHistory === null}}">
+    <view class="help-text">加载中</view>
+</view>
+<view wx:else class="container">
+    <view class="panel">
+        <view class="panel-header">
+            挂号单信息
+        </view>
+        <view class="panel-body">
+            <view class="infoview">
+                <view class="info-line">
+                    <view class="info-title">挂号单号:</view>
+                    <view class="info-text">{{props.store.registerHistory.id}}</view>
+                </view>
+                <view class="info-line">
+                    <view class="info-title">状态:</view>
+                    <view class="info-text">{{props.store.registerHistory.stateStr}}</view>
+                </view>
+                <view class="info-line">
+                    <view class="info-title">就诊时间:</view>
+                    <view class="info-text">{{props.store.registerHistory.visitDateTime}}</view>
+                </view>
+                <view class="info-line">
+                    <view class="info-title">就诊医院:</view>
+                    <view class="info-text">{{props.store.registerHistory.arrangementHistory.hospital.name}}</view>
+                </view>
+                <view class="info-line">
+                    <view class="info-title">医师:</view>
+                    <view class="info-text">{{props.store.registerHistory.arrangementHistory.doctor.realName}}</view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="panel">
+        <view class="panel-header">
+            就诊人信息
+        </view>
+        <view class="panel-body">
+            <view class="infoview">
+                <view class="info-line">
+                    <view class="info-title">就诊人:</view>
+                    <view class="info-text">{{props.store.registerHistory.visitor.realName}}</view>
+                </view>
+                <view class="info-line">
+                    <view class="info-title">性别:</view>
+                    <view class="info-text">{{props.store.registerHistory.visitor.genderStr}}</view>
+                </view>
+                <view class="info-line">
+                    <view class="info-title">身份证:</view>
+                    <view class="info-text">{{props.store.registerHistory.visitor.sid}}</view>
+                </view>
+                <view class="info-line">
+                    <view class="info-title">手机号:</view>
+                    <view class="info-text">{{props.store.registerHistory.visitor.phone}}</view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="panel">
+        <view class="panel-header">
+            处方信息
+        </view>
+        <view class="panel-body">
+            <view class="infoview vertical">
+                <view class="info-line">
+                    <view class="info-title">主诉:</view>
+                    <view class="info-text">头疼</view>
+                </view>
+                <view class="info-line">
+                    <view class="info-title">诊断信息:</view>
+                    <view class="info-text">这个是诊断信息可能会比较长，这个是诊断信息可能会比较长，这个是诊断信息可能会比较长，这个是诊断信息可能会比较长，这个是诊断信息可能会比较长，</view>
+                </view>
+                <view class="info-line">
+                    <view class="info-title">病史:</view>
+                    <view class="info-text">这个是诊断信息可能会比较长，这个是诊断信息可能会比较长，这个是诊断信息可能会比较长，这个是诊断信息可能会比较长，这个是诊断信息可能会比较长，</view>
+                </view>
+                <view class="info-line">
+                    <view class="info-title">家族史:</view>
+                    <view class="info-text">这个是诊断信息可能会比较长，这个是诊断信息可能会比较长，这个是诊断信息可能会比较长，这个是诊断信息可能会比较长，这个是诊断信息可能会比较长，这个是诊断信息可能会比较长，</view>
+                </view>
+                <view class="info-line">
+                    <view class="info-title">处方图片:</view>
+                    <view class="info-text">
+                        <view class="pic-list">
+                            <view class="pic-item"><image src="http://via.placeholder.com/50x50"/></view>
+                            <view class="pic-item"><image src="http://via.placeholder.com/50x50"/></view>
+                            <view class="pic-item"><image src="http://via.placeholder.com/50x50"/></view>
+                            <view class="pic-item pic-add"><i-icon type="add" size="28" color="#80848f" /></view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <!-- <i-button bind:click="submit" type="primary" size="default">保存</i-button> -->
+    <view class="whitespace"></view>
+</view>

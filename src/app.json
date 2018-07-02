@@ -1,19 +1,20 @@
 {
   "pages":[
+    "pages/hospitals/index",
     "pages/index/index",
+    "pages/registerHistories/index",
     "pages/visitorMgr/index",
-    "pages/admin/index/index",
-    "pages/admin/arrangement/index",
+    "pages/visitorMgrAdd/index",
     "pages/orderReg/index",
     "pages/hospitalDetail/index",
     "pages/doctorDetail/index",
-    "pages/logs/logs",
+    "pages/registerDetail/index",
     "pages/mine/index"
   ],
   "tabBar": {
     "selectedColor": "#2d8cf0",
     "list": [{
-      "pagePath": "pages/index/index",
+      "pagePath": "pages/hospitals/index",
       "text": "挂号"
     }, {
       "pagePath": "pages/mine/index",

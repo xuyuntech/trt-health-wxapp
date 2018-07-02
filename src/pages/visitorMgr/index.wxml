@@ -13,9 +13,12 @@ module.exports = {
 <view class="container">
   <view class="whitespace"></view>
   <i-cell-group>
-    <i-cell wx:key="sid" wx:for="{{props.store.visitors}}">
+    <view class="help-text" wx:if="{{props.store.visitors.length == 0}}">
+      暂无数据
+    </view>
+    <i-cell wx:key="sid" wx:for="{{props.store.visitors}}" data-visitor-sid="{{item.sid}}" bind:click="selectVisitor">
       <view>
-        <text class="fs-normal mr-5">{{item.name}}</text>
+        <text class="fs-normal mr-5">{{item.realName}}</text>
         <text class="fs-small mr-5">{{tools.getGender(item.gender)}}</text>
         <text class="fs-small">{{tools.getAge(item.birthday)}}</text>
       </view>

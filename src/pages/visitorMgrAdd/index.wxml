@@ -1,0 +1,12 @@
+<view class="container">
+  <i-panel title="就诊人信息">
+      <i-input value="{{ props.store.realName }}" data-name="realName" bind:change="valueChange" type="text" title="姓名" placeholder="输入姓名" maxlength="50" />
+      <i-input value="{{ props.store.sid }}" data-name="sid"  bind:change="valueChange" type="number" title="身份证号" placeholder="输入身份证号" maxlength="50" />
+      <view class="c-select"><i-cell title="性别" data-name="gender" is-link value="{{props.store.gender}}" bind:click="selectGender"></i-cell></view>
+      <i-input value="{{ props.store.age }}" data-name="age"  bind:change="valueChange" type="number" title="年龄" placeholder="输入年龄" maxlength="50" />
+      <i-input value="{{ props.store.phone }}" data-name="phone"  bind:change="valueChange" type="number" title="手机号码" placeholder="输入手机号" maxlength="50" />
+  </i-panel>
+  <i-button bind:click="add" type="primary" size="default">提交</i-button>
+  <i-action-sheet visible="{{ props.store.genderShow }}" actions="{{ props.store.genderList }}" show-cancel bind:cancel="cancelGender" bind:click="confirmGender" mask-closable="{{ true }}">
+  </i-action-sheet>
+</view>

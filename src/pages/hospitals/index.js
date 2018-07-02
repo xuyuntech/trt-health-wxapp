@@ -16,31 +16,32 @@ Page(observer(
 		handleChange({detail: {key}}) {
 			this.props.store.current = key;
 		},
-		async onLoad(options) {
-			const { id } = options;
-			await delay();
+		async reload() {
 			try {
 				const data = await request({
-					url: API.Hospitals.FindByID(id),
+					url: API.Hospitals.Query(),
 				});
 				console.log(data);
-				store.hospital = {
-					...data.result,
-				};
-				wx.setNavigationBarTitle({
-					title: store.hospital.name,
-				});
-				// fetch doctors
-				const doctors = await request({
-					url: API.Doctor.Query(),
-				});
-				store.doctors = doctors.results.map((item) => ({
+				store.hospitals = (data.results || []).map((item) => ({
 					...item,
-					link: `/pages/doctorDetail/index?name=${item.name}&hospitalID=${store.hospital.id}`,
+					link: `/pages/hospitalDetail/index?id=${item.id}`,
+					phone: item.phone1 ? `${item.phone1}-${item.phone2}` : item.phone2,
 				}));
 			}
 			catch (err) {
 				console.error(err);
+			}
+		},
+		async onLoad() {
+			await delay();
+			console.log('app.isLogin()', app.isLogin());
+			if (app.isLogin()) {
+				console.log('app login');
+				this.reload();
+			}
+			else {
+				console.log('app not login');
+				app.startCallback = this.reload;
 			}
 		},
 	},

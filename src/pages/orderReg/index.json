@@ -1,5 +1,6 @@
 
 {
+  "navigationBarTitleText": "预约挂号",
   "usingComponents": {
     "i-action-sheet": "../../iview/action-sheet/index",
     "i-modal": "../../iview/modal/index",

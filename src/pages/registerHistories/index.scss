@@ -1,0 +1,34 @@
+
+@import 'share';
+.tab-item{
+	padding: 8px 10px !important;
+	background-color: #fff;
+}
+
+.reg-list {
+	.reg-item{
+		margin-top: 10px;
+	}
+}
+
+.detail-info{
+	display: flex;
+	align-items: center;
+}
+
+
+.search-tab {
+	display: flex;
+	align-items: center;
+	background-color: #fff;
+	.search-tab-item{
+		text-align: center;
+		padding: 8px 10px;
+		flex: 1;
+		border-bottom: 1px solid #dddee1;
+		border-right: 1px solid #dddee1;
+		&:last-child{
+			border-right: 0;
+		}
+	}
+}

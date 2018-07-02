@@ -8,28 +8,18 @@ var Store = function () {
 		chufuShow: false,
 		chufuActions: [
 			{
-				name:'出诊',
+				name: '初诊',
+				value: 'First',
 			},
 			{
-				name:'复诊',
+				name: '复诊',
+				value: 'Second',
 			},
 		],
+		visitorsIndex: -1,
+		selectedVisitor: null,
 		diseaseInfo: '',
-		arrangement_list: [
-			{
-				hospitalID: 'id',
-				hospital: {
-					name: '河东路店',
-				},
-				list: [
-					{
-						visitDate: '2018-05-23 周三 3天后',
-						price: '80.00',
-						arrangementKey: 'arrangementKey',
-					},
-				],
-			},
-		],
+		arrangementHistory: {},
 	});
 };
 

@@ -1,4 +1,5 @@
-import { flow } from 'lodash';
+import { request, groupArrangementHistoryByHospital } from '../../utils';
+import { API } from '../../const';
 import { observer } from '../../libs/observer';
 import store from './store';
 
@@ -20,18 +21,33 @@ Page(observer(
 			});
 		},
 		async onLoad(options) {
-			const { id } = options;
+			const { name, hospitalID } = options;
 			await delay();
-			wx.setNavigationBarTitle({
-				title: id,
-			});
-			const log = flow(() => {
-				console.log('is wechat mini program: ', __WECHAT__);
-				console.log('is alipay mini program: ', __ALIPAY__);
-				console.log('DEV: ', __DEV__);
-			});
-
-			log();
+			try {
+				const data = await request({
+					url: API.Doctor.FindByName(name),
+				});
+				console.log(data);
+				store.doctor = {
+					...data.result,
+				};
+				wx.setNavigationBarTitle({
+					title: store.doctor.realName,
+				});
+				// fetch arrangementHistories
+				const arrangementHistories = await request({
+					url: API.ArrangementHistory.Query(),
+					data: {
+						f: 'true',
+						doctorName: store.doctor.name,
+						hospitalID,
+					},
+				});
+				store.arrangementHistories = groupArrangementHistoryByHospital(arrangementHistories.results);
+			}
+			catch (err) {
+				console.error(err);
+			}
 		},
 	},
 ));
