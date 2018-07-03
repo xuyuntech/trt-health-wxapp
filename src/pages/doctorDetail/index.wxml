@@ -3,7 +3,7 @@
   <view wx:if="{{!props.store.doctor}}" class="help-text">加载中</view>
   <view wx:else>
     <i-panel>
-      <view style="padding:15px;" class="card">
+      <view style="padding:15px;border:0;" class="card">
         <image src="https://i.loli.net/2017/08/21/599a521472424.jpg" style="width:50px;height:50px;min-width:50px;"/>
         <view class="card-right">
           <view><text class="fs-normal">{{props.store.doctor.realName}}</text><text class="clr-sub fs-small ml-5">{{props.store.doctor.title}}</text></view>
@@ -17,12 +17,14 @@
       </view>
     </i-panel>
     <i-panel title="排班详情">
+      <view class="help-text" wx:if="{{props.store.arrangementHistories.length === 0}}">加载中...</view>
       <view class="arrg-item" wx:key="hospitalID" wx:for="{{props.store.arrangementHistories}}">
         <view class="mb-5"><text>* {{item.hospital.name}}</text></view>
         <view class="arrg-content" wx:key="id" wx:for="{{item.arrangementHistories}}">
           <view class="arrg-content-l">
             <view>{{item.visitDate}}</view>
-            <view>挂号费: <text class="clr-warning">¥{{item.price}}</text></view>
+            <view>挂号费: <text class="clr-warning">¥{{item.fee}}</text></view>
+            <view>科室: {{item.department1.name}} - {{item.department2.name}}</view>
           </view>
           <view>
             <i-button type="primary" size="small" i-class="reg-btn" data-arrangement-key="{{item.id}}" bind:click="register">预约</i-button>

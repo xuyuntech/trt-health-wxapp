@@ -1,5 +1,6 @@
 
 {
+  "navigationBarTitleText":"在线智能问诊",
   "usingComponents": {
     "i-cell-group": "../../iview/cell-group/index",
     "i-tab-bar": "../../iview/tab-bar/index",

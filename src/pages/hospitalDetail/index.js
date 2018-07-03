@@ -17,6 +17,33 @@ Page(observer(
 			this.props.store.current = key;
 		},
 		async onLoad(options) {
+			const { dep1, dep2, hospital } = options;
+			await delay();
+			try {
+				const data = await request({
+					url: API.Hospitals.FindByID(hospital),
+				});
+				console.log(data);
+				store.hospital = {
+					...data.result,
+				};
+				wx.setNavigationBarTitle({
+					title: store.hospital.name,
+				});
+				// fetch doctors
+				const department2 = await request({
+					url: API.Department2.FindByID(dep2),
+				});
+				store.doctors = department2.result.doctors.map((item) => ({
+					...item,
+					link: `/pages/doctorDetail/index?name=${item.name}&hospitalID=${store.hospital.id}&dep1=${dep1}&dep2=${dep2}`,
+				}));
+			}
+			catch (err) {
+				console.error(err);
+			}
+		},
+		async onLoad1(options) {
 			const { id } = options;
 			await delay();
 			try {

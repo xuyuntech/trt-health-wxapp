@@ -13,7 +13,7 @@ Page(observer(
 		props: {
 			store,
 		},
-		diseaseInfoChange({detail: {value}}) {
+		diseaseInfoChange({detail: {detail: {value}}}) {
 			store.diseaseInfo = value;
 		},
 		submitDiseaseInfo() {
@@ -25,6 +25,9 @@ Page(observer(
 		showDiseaseInfoModal() {
 			store.diseaseInfoModalShow = true;
 		},
+		// diseaseInfoChange({detail: {detail: {value}}}) {
+		// 	store.diseaseInfo = value;
+		// },
 		showChufuAction() {
 			store.chufuShow = true;
 		},
@@ -61,11 +64,22 @@ Page(observer(
 					method: 'POST',
 					data,
 				});
-				wx.showToast({title: '挂号成功', icon: 'success'});
-				wx.navigateBack();
+				wx.showModal({
+					title: '提示',
+					content: '预约成功',
+					showCancel: false,
+					success() {
+						wx.navigateBack();
+					},
+				});
 			}
 			catch (err) {
 				console.error(err);
+				wx.showModal({
+					title: '操作失败',
+					content: `${err}`,
+					showCancel: false,
+				});
 			}
 		},
 		async onLoad(options) {

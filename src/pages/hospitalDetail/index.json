@@ -1,6 +1,6 @@
 
 {
-  "navigationBarTitleText": "医院",
+  "navigationBarTitleText": "选择医师",
   "usingComponents": {
     "i-cell-group": "../../iview/cell-group/index",
     "i-cell": "../../iview/cell/index",

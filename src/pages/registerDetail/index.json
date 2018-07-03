@@ -1,5 +1,6 @@
 
 {
+  "navigationBarTitleText":"挂号单详情",
   "usingComponents": {
     "i-button": "../../iview/button/index",
     "i-icon": "../../iview/icon/index"

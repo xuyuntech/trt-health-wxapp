@@ -11,7 +11,7 @@ export const GENDER = {
 };
 
 
-const BASE_URL = 'http://192.168.1.101:3002';
+const BASE_URL = 'http://192.168.1.106:3002';
 
 // o Register // 挂号
 //   o Visiting // 就诊中
@@ -34,6 +34,13 @@ export const API = {
 		Create: () => `${BASE_URL}/arrangement_history`,
 		Query: () => `${BASE_URL}/arrangement_history`,
 		FindByID: (id) => `${BASE_URL}/arrangement_history/${id}`,
+	},
+	Department1: {
+		Query: () => `${BASE_URL}/department1`,
+	},
+	Department2: {
+		Query: () => `${BASE_URL}/department2`,
+		FindByID: (id) => `${BASE_URL}/department2/${id}`,
 	},
 	RegisterHistory: {
 		Create: () => `${BASE_URL}/register_history`,

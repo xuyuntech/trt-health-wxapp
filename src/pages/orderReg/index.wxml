@@ -23,7 +23,7 @@ module.exports = {
 
 <view class="container">
   <i-panel>
-    <view style="padding:15px;" class="card">
+    <view style="padding:15px;border: 0;" class="card">
       <image src="https://i.loli.net/2017/08/21/599a521472424.jpg" style="width:50px;height:50px;min-width:50px;"/>
       <view class="card-right">
         <view><text class="fs-normal">{{props.store.arrangementHistory.doctor.realName}}</text>
@@ -43,11 +43,14 @@ module.exports = {
       <view class="clr-sub txt-right fs-small">{{props.store.selectedVisitor.sid}}</view>
     </i-cell>
     <i-cell title="初/复诊" value="{{tools.getChufuNameByIndex(props.store.selectedChufuIndex, props.store.chufuActions)}}" is-link bind:click="showChufuAction"></i-cell>
+    <!--
     <i-cell title="疾病信息" value="{{props.store.diseaseInfo?'':'选填'}}" bind:click="showDiseaseInfoModal">
       <text wx:if="{{props.store.diseaseInfo !== ''}}" class="clr-sub fs-small">{{props.store.diseaseInfo}}</text>
     </i-cell>
+    -->
+    <i-input type="textarea" title="疾病信息" bind:change="diseaseInfoChange" value="{{props.store.diseaseInfo}}" placeholder="疾病信息(最多100字)"></i-input>    
   </i-cell-group>
-  <button class="btn btn-primary" bindtap="submit">下一步</button>
+  <button class="btn btn-primary" style="margin: 10px;" bindtap="submit">提交预约</button>
   <i-modal title="标题" visible="{{ props.store.diseaseInfoModalShow }}"  bind:cancel="cancelDiseaseInfo"  bind:ok="submitDiseaseInfo">
     <textarea value="{{props.store.diseaseInfo}}" bindinput="diseaseInfoChange" style="width: 100%;height:100px;text-align:left;padding: 0 5px;box-sizing: border-box;" placeholder="这里输入疾病信息" auto-focus></textarea>
   </i-modal>

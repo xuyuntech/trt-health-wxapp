@@ -1,0 +1,14 @@
+<view class="container">
+  <view class="wrapper">
+    <scroll-view scroll-y class="left">
+        <view wx:for="{{props.store.department1}}" class="item {{item.id === props.store.selectedDep1ID ? 'selected' : ''}} {{props.store.department1.length === 0 ? 'full' : ''}}" bindtap="selectDep1" data-department="{{item.id}}">
+        {{item.name}}
+        </view>
+    </scroll-view>
+    <view class="right">
+        <view wx:for="{{props.store.department2}}"  class="item {{item.id === props.store.selectedDep2ID ? 'selected' : ''}}" bindtap="selectDep2" data-department="{{item.id}}">
+            {{item.name}}
+        </view>
+    </view>
+  </view>
+</view>

@@ -21,7 +21,7 @@ Page(observer(
 			});
 		},
 		async onLoad(options) {
-			const { name, hospitalID } = options;
+			const { name, hospitalID, dep1, dep2 } = options;
 			await delay();
 			try {
 				const data = await request({
@@ -39,8 +39,10 @@ Page(observer(
 					url: API.ArrangementHistory.Query(),
 					data: {
 						f: 'true',
-						doctorName: store.doctor.name,
-						hospitalID,
+						doctor: store.doctor.name,
+						hospital: hospitalID,
+						department1: dep1,
+						department2: dep2,
 					},
 				});
 				store.arrangementHistories = groupArrangementHistoryByHospital(arrangementHistories.results);

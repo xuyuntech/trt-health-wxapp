@@ -7,6 +7,7 @@
     "i-cell-group": "../../iview/cell-group/index",
     "i-button": "../../iview/button/index",
     "i-cell": "../../iview/cell/index",
+    "i-input": "../../iview/input/index",
     "i-card": "../../iview/card/index",
     "i-panel": "../../iview/panel/index"
   }

@@ -24,7 +24,7 @@ Page(observer(
 				console.log(data);
 				store.hospitals = (data.results || []).map((item) => ({
 					...item,
-					link: `/pages/hospitalDetail/index?id=${item.id}`,
+					link: `/pages/department/index?hospital=${item.id}`,
 					phone: item.phone1 ? `${item.phone1}-${item.phone2}` : item.phone2,
 				}));
 			}

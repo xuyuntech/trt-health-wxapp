@@ -1,5 +1,6 @@
 
 {
+  "navigationBarTitleText":"预约",
   "usingComponents": {
     "i-cell-group": "../../iview/cell-group/index",
     "i-button": "../../iview/button/index",

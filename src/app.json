@@ -1,7 +1,8 @@
 {
   "pages":[
-    "pages/hospitals/index",
     "pages/index/index",
+    "pages/department/index",
+    "pages/hospitals/index",
     "pages/registerHistories/index",
     "pages/visitorMgr/index",
     "pages/visitorMgrAdd/index",

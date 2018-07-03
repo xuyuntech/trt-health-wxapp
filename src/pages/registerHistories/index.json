@@ -1,5 +1,6 @@
 
 {
+  "navigationBarTitleText":"挂号单列表",
   "usingComponents": {
     "i-icon": "../../iview/icon/index"
   }
