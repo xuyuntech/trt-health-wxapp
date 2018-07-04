@@ -34,15 +34,16 @@ Page(observer(
 		},
 		async onLoad() {
 			await delay();
-			console.log('app.isLogin()', app.isLogin());
-			if (app.isLogin()) {
-				console.log('app login');
-				this.reload();
-			}
-			else {
-				console.log('app not login');
-				app.startCallback = this.reload;
-			}
+			// console.log('app.isLogin()', app.isLogin());
+			app.startCallback = this.reload;
+			this.reload();
+			// if (await app.isLogin()) {
+			// 	this.reload();
+			// }
+			// else {
+			// 	console.log('app not login');
+			// 	app.startCallback = this.reload;
+			// }
 		},
 	},
 ));

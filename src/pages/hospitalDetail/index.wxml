@@ -7,7 +7,7 @@
   <i-cell-group class="list">
     <i-cell wx:key="item" wx:for="{{props.store.doctors}}" is-link url="{{item.link}}">
       <view class="list-item">
-        <image src="http://via.placeholder.com/50x50" style="width:50px;height:50px;min-width:50px;border-radius:50%;"/>
+        <image src="../../images/doctor-avatar.png" style="width:50px;height:50px;min-width:50px;border-radius:50%;"/>
         <view class="item-content">
           <view>
             <text>{{item.realName}}</text>

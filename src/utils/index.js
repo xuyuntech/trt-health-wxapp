@@ -1,7 +1,5 @@
 import moment from 'moment';
 
-const app = getApp();
-
 function formatNumber(n) {
 	n = n.toString();
 	return n[1] ? n : '0' + n;
@@ -23,6 +21,20 @@ export function formatTime(date) {
 	);
 }
 
+let authInfo = wx.getStorageSync('auth_info');
+
+function getRequestHeader() {
+	if (!authInfo) {
+		authInfo = wx.getStorageSync('auth_info');
+	}
+	const { accessToken, userID, username } = authInfo;
+	return {
+		'X-Access-Token': accessToken,
+		'X-Access-UserID': userID,
+		'X-Access-Username': username,
+	};
+}
+
 export async function request({url, headers, method = 'GET', data}) {
 	return new Promise((resolve, reject) => {
 		wx.showLoading({
@@ -32,7 +44,8 @@ export async function request({url, headers, method = 'GET', data}) {
 			method,
 			url,
 			header: {
-				...app.getRequestHeader(),
+				// ...app.getRequestHeader(),
+				...getRequestHeader(),
 				...headers,
 			},
 			data,
@@ -46,6 +59,9 @@ export async function request({url, headers, method = 'GET', data}) {
 					reject(err);
 				}
 				else if (data.status === 401) {
+					authInfo = null;
+					const app = getApp();
+					app.clearStorage();
 					app.login();
 				}
 				else if (data.status !== 0) {

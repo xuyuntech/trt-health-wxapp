@@ -4,7 +4,7 @@
   <view wx:else>
     <i-panel>
       <view style="padding:15px;border:0;" class="card">
-        <image src="https://i.loli.net/2017/08/21/599a521472424.jpg" style="width:50px;height:50px;min-width:50px;"/>
+        <image src="../../images/doctor-avatar.png" style="width:50px;height:50px;min-width:50px;"/>
         <view class="card-right">
           <view><text class="fs-normal">{{props.store.doctor.realName}}</text><text class="clr-sub fs-small ml-5">{{props.store.doctor.title}}</text></view>
           <view><text class="clr-warning fs-small">评分 10</text></view>
@@ -17,7 +17,7 @@
       </view>
     </i-panel>
     <i-panel title="排班详情">
-      <view class="help-text" wx:if="{{props.store.arrangementHistories.length === 0}}">加载中...</view>
+      <view class="help-text" wx:if="{{props.store.arrangementHistories.length === 0}}">{{props.store.loadingMsg}}</view>
       <view class="arrg-item" wx:key="hospitalID" wx:for="{{props.store.arrangementHistories}}">
         <view class="mb-5"><text>* {{item.hospital.name}}</text></view>
         <view class="arrg-content" wx:key="id" wx:for="{{item.arrangementHistories}}">

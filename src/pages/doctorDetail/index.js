@@ -35,6 +35,7 @@ Page(observer(
 					title: store.doctor.realName,
 				});
 				// fetch arrangementHistories
+				store.loadingMsg = '加载中...';
 				const arrangementHistories = await request({
 					url: API.ArrangementHistory.Query(),
 					data: {
@@ -46,6 +47,9 @@ Page(observer(
 					},
 				});
 				store.arrangementHistories = groupArrangementHistoryByHospital(arrangementHistories.results);
+				if (!store.arrangementHistories.length) {
+					store.loadingMsg = '暂无排班信息';
+				}
 			}
 			catch (err) {
 				console.error(err);

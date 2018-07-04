@@ -24,7 +24,7 @@ module.exports = {
 <view class="container">
   <i-panel>
     <view style="padding:15px;border: 0;" class="card">
-      <image src="https://i.loli.net/2017/08/21/599a521472424.jpg" style="width:50px;height:50px;min-width:50px;"/>
+      <image src="../../images/doctor-avatar.png" style="width:50px;height:50px;min-width:50px;"/>
       <view class="card-right">
         <view><text class="fs-normal">{{props.store.arrangementHistory.doctor.realName}}</text>
         <text class="clr-sub fs-small ml-5">{{props.store.arrangementHistory.doctor.title}}</text></view>

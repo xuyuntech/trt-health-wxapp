@@ -1,8 +1,7 @@
 {
   "pages":[
-    "pages/index/index",
-    "pages/department/index",
     "pages/hospitals/index",
+    "pages/department/index",
     "pages/registerHistories/index",
     "pages/visitorMgr/index",
     "pages/visitorMgrAdd/index",
@@ -15,9 +14,13 @@
   "tabBar": {
     "selectedColor": "#2d8cf0",
     "list": [{
+      "iconPath": "images/guahao1.png",
+      "selectedIconPath": "images/guahao.png",
       "pagePath": "pages/hospitals/index",
       "text": "挂号"
     }, {
+      "iconPath": "images/mine.png",
+      "selectedIconPath": "images/mine-selected.png",
       "pagePath": "pages/mine/index",
       "text": "我的"
     }]

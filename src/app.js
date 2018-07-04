@@ -4,25 +4,37 @@ let _requestHeader = null;
 let _userInfo = null;
 
 App({
-	onLaunch: function () {
+	onLaunch: async function () {
 		// 展示本地存储能力
 		var logs = wx.getStorageSync('logs') || [];
 		logs.unshift(Date.now());
 		wx.setStorageSync('logs', logs);
 		const authInfo = wx.getStorageSync('auth_info');
 		const userInfo = wx.getStorageSync('user_info');
+		// const isLogin = await this.isLogin();
+		// if (!isLogin) {
+		// 	this.login();
+		// }
+		// else {
+		// 	this.start();
+		// }
 		const { accessToken, userID, email, username } = authInfo;
-		if (!accessToken) {
-			this.login();
-		}
-		else {
+		if (accessToken) {
 			_requestHeader = { accessToken, userID, email, username };
 			_userInfo = userInfo;
-			this.start();
 		}
+		// if (!accessToken) {
+		// 	this.login();
+		// }
+		// else {
+		// _requestHeader = { accessToken, userID, email, username };
+		// _userInfo = userInfo;
+		// this.start();
+		// }
 	},
 	startCallback: null,
 	start() {
+		console.log('app.start ...');
 		if (!this.startCallback) {
 			return;
 		}
@@ -33,6 +45,10 @@ App({
 		// wx.setStorageSync('user_id', userID);
 		wx.setStorageSync('user_info', userInfo);
 		wx.setStorageSync('auth_info', {accessToken, userID, email, username});
+	},
+	clearStorage() {
+		wx.removeStorageSync('user_info');
+		wx.removeStorageSync('auth_info');
 	},
 	setRequestHeader({accessToken, userID, userInfo}) {
 		_requestHeader = {
@@ -74,9 +90,6 @@ App({
 			'X-Access-UserID': userID,
 			'X-Access-Username': username,
 		};
-	},
-	isLogin() {
-		return _requestHeader && !!_requestHeader.accessToken;
 	},
 	login() {
 		const self = this;

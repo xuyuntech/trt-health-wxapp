@@ -29,6 +29,7 @@ export const API = {
 	},
 	Users: {
 		Login: () => `${BASE_URL}/auth/users/login`,
+		FindByID: (id) => `${BASE_URL}/auth/users/${id}`,
 	},
 	ArrangementHistory: {
 		Create: () => `${BASE_URL}/arrangement_history`,
