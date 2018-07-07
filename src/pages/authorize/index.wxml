@@ -1,0 +1,4 @@
+<view class="container">
+  <view style="height:100px;"></view>
+  <button style="margin: 10px;" class="btn btn-primary" open-type="getUserInfo" bindgetuserinfo="success">授权微信用户信息</button> 
+</view>

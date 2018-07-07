@@ -6,7 +6,6 @@ import store from './store';
 const delay = (t = 0) => new Promise((resolve) => setTimeout(resolve, t));
 
 // 获取应用实例
-const app = getApp(); //  eslint-disable-line no-undef
 Page(observer(
 	{
 		props: {
@@ -23,15 +22,17 @@ Page(observer(
 			}
 			// const router = getCurrentPages();
 			// const prevPage = router[r(item)r.length - 2];
+			const app = getApp(); //  eslint-disable-line no-undef
 			const prevPage = app.getPrevPage();
 			if (prevPage) {
 				prevPage.props.store.selectedVisitor = {
-					...store.visitors.find((item) => item.sid === dataset.visitorSid),
+					...store.visitors.find((item) => item.id === dataset.visitorId),
 				};
 				wx.navigateBack();
 			}
 		},
 		async reload() {
+			const app = getApp(); //  eslint-disable-line no-undef
 			try {
 				const data = await request({
 					url: API.Visitor.Query(),

@@ -16,10 +16,12 @@ var TodoStore = function () {
 	});
 
 	this.load = async function () {
+		console.log('app.getUsername()', app.getUsername());
 		try {
 			const data = await request({
 				url: API.RegisterHistory.Query(),
 				data: {
+					f: 'true',
 					username: app.getUsername(),
 				},
 			});

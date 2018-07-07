@@ -1,5 +1,8 @@
 
-<view class="container">
+<view class="container" wx:if="{{props.store.loadMsg}}">
+  <view class="help-text">{{props.store.loadMsg}}</view>
+</view>
+<view class="container" wx:else>
   <i-tabs current="{{ props.store.current }}" bindchange="handleChange">
     <i-tab key="tab1" title="按专家预约"></i-tab>
     <i-tab key="tab2" title="按日期预约"></i-tab>

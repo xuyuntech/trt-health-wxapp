@@ -12,6 +12,7 @@ class Store {
 			department2: [],
 			selectedDep1ID: '',
 			selectedDep2ID: '',
+			loadMsg: '',
 		});
 	}
 	getSelectedDepartment() {

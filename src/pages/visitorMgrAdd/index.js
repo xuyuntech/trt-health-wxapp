@@ -14,7 +14,7 @@ Page(observer(
 		},
 		async add() {
 			const { realName, sid, age, phone, gender } = store;
-			console.log({realName, sid, age, phone, gender});
+			console.log({realName, sid, age, phone, gender, creator: app.getUsername()});
 			if (!realName) {
 				return wx.showToast({title: '请填写姓名', icon: 'none'});
 			}

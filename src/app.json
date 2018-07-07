@@ -1,11 +1,12 @@
 {
   "pages":[
     "pages/hospitals/index",
+    "pages/authorize/index",
+    "pages/orderReg/index",
     "pages/department/index",
     "pages/registerHistories/index",
     "pages/visitorMgr/index",
     "pages/visitorMgrAdd/index",
-    "pages/orderReg/index",
     "pages/hospitalDetail/index",
     "pages/doctorDetail/index",
     "pages/registerDetail/index",
@@ -27,8 +28,8 @@
   },
   "window":{
     "backgroundTextStyle":"light",
-    "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "Wechat",
-    "navigationBarTextStyle":"black"
+    "navigationBarBackgroundColor": "#0089ef",
+    "navigationBarTitleText": "在线智能问诊",
+    "navigationBarTextStyle":"white"
   }
 }

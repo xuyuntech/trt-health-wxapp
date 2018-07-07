@@ -20,6 +20,7 @@ Page(observer(
 			const { dep1, dep2, hospital } = options;
 			await delay();
 			try {
+				store.loadMsg = '加载中...';
 				const data = await request({
 					url: API.Hospitals.FindByID(hospital),
 				});
@@ -38,9 +39,15 @@ Page(observer(
 					...item,
 					link: `/pages/doctorDetail/index?name=${item.name}&hospitalID=${store.hospital.id}&dep1=${dep1}&dep2=${dep2}`,
 				}));
+				if (store.doctors.length === 0) {
+					store.loadMsg = '该科室暂无医生数据';
+					return;
+				}
+				store.loadMsg = '';
 			}
 			catch (err) {
 				console.error(err);
+				wx.showModal({title: '错误', content: String(err)});
 			}
 		},
 		async onLoad1(options) {

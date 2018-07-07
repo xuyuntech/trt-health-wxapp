@@ -13,7 +13,7 @@ Page(observer(
 		props: {
 			store,
 		},
-		diseaseInfoChange({detail: {detail: {value}}}) {
+		diseaseInfoChange({detail: {value}}) {
 			store.diseaseInfo = value;
 		},
 		submitDiseaseInfo() {

@@ -7,6 +7,9 @@ Page(observer(
 		props: {
 			store,
 		},
+		onShow() {
+			store.userInfo = getApp().getUserInfo();
+		},
 		onLoad() {
 			this.setData({
 				logs: (wx.getStorageSync('logs') || []).map(function (log) {

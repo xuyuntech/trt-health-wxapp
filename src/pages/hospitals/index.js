@@ -29,7 +29,7 @@ Page(observer(
 				}));
 			}
 			catch (err) {
-				console.error(err);
+				console.error('query hospital', err);
 			}
 		},
 		async onLoad() {

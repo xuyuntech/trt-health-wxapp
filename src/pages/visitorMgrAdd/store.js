@@ -11,11 +11,11 @@ realName: '张三',
 
 var Store = function () {
 	extendObservable(this, {
-		realName: '张三',
+		realName: '',
 		gender: '请选择',
 		age: '',
-		phone: '12399988987',
-		sid: '1238893204839204893',
+		phone: '',
+		sid: '',
 		genderShow: false,
 	});
 	this.genderList = [

@@ -59,6 +59,7 @@ export async function request({url, headers, method = 'GET', data}) {
 					reject(err);
 				}
 				else if (data.status === 401) {
+					console.log('401 --->>>');
 					authInfo = null;
 					const app = getApp();
 					app.clearStorage();

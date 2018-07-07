@@ -16,7 +16,7 @@ module.exports = {
     <view class="help-text" wx:if="{{props.store.visitors.length == 0}}">
       暂无数据
     </view>
-    <i-cell wx:key="sid" wx:for="{{props.store.visitors}}" data-visitor-sid="{{item.sid}}" bind:click="selectVisitor">
+    <i-cell wx:key="sid" wx:for="{{props.store.visitors}}" data-visitor-id="{{item.id}}" bind:click="selectVisitor">
       <view>
         <text class="fs-normal mr-5">{{item.realName}}</text>
         <text class="fs-small mr-5">{{tools.getGender(item.gender)}}</text>
