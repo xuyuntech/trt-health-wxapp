@@ -2,13 +2,21 @@
   <view class="whitespace"></view>
   <i-cell-group>
     <i-cell>
-      <view style="display:flex;align-items:center;">
-        <i-avatar src="{{props.store.userInfo.avatarUrl}}" size="large"></i-avatar>
+      <view wx:if="{{props.store.userInfo}}" style="display:flex;align-items:center;">
+        <i-avatar src="{{props.store.userInfo.avatar}}" size="large"></i-avatar>
         <view class="ml-5">
-          <text>{{props.store.userInfo.nickName}}</text>
+          <view>{{props.store.userInfo.realName}}</view>
+          <view class="fs-small clr-sub">积分: <text class="clr-warning">{{props.store.userInfo.points}}</text></view>
         </view>
       </view>
+      <view wx:else>
+        <view class="help-text">加载中...</view>
+      </view>
     </i-cell>
+  </i-cell-group>
+  <view class="whitespace"></view>
+  <i-cell-group>
+    <i-cell title="钱包地址"><text class="fs-small clr-sub">{{props.store.userInfo.walletAddress}}</text></i-cell>
   </i-cell-group>
   <view class="whitespace"></view>
   <i-cell-group>

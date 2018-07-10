@@ -66,6 +66,11 @@ export async function request({url, headers, method = 'GET', data}) {
 					app.login();
 				}
 				else if (data.status !== 0) {
+					wx.showModal({
+						title: '错误',
+						content: JSON.stringify(data, null, '\t'),
+						showCancel: false,
+					});
 					reject(data);
 				}
 				else {

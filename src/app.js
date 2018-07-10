@@ -84,10 +84,12 @@ App({
 			success: function (res) {
 				if (res.statusCode !== 200) {
 					console.error('auth/wechat/reg error', res);
+					self.reAuthorizeConfirm(res.statusCode);
 					return;
 				}
 				if (res.data.status !== 0) {
 					console.error('auth/wechat/reg failed', res);
+					self.reAuthorizeConfirm(res.data.status);
 					return;
 				}
 				const { username, email } = res.data.result;
@@ -101,12 +103,29 @@ App({
 			},
 		});
 	},
+	reAuthorizeConfirm(status) {
+		const self = this;
+		wx.showModal({
+			title: '提示',
+			content: `认证失败[${status}]，是否重新认证?`,
+			success({confirm}) {
+				if (confirm) {
+					self.login();
+				}
+			},
+		});
+	},
 	login() {
+		console.log('--- App Login ---');
 		const self = this;
 		// 登录
 		wx.login({
+			fail: (err) => {
+				console.error('app login failed: ', err);
+			},
 			success: (res) => {
 				// 发送 res.code 到后台换取 openId, sessionKey, unionId
+				console.log('app login success: ', res);
 				wx.showLoading();
 				const { errMsg, code } = res;
 				if (errMsg === 'login:ok') {
@@ -123,6 +142,7 @@ App({
 								return;
 							}
 							const { accessToken, userID } = result;
+							console.log('accessToken, userID', {accessToken, userID});
 							wx.setStorageSync('auth_info', {
 								accessToken, userID,
 							});
@@ -138,6 +158,8 @@ App({
 						},
 						fail(res) {
 							console.log('wechat callback err:', res);
+							self.clearStorage();
+							self.reAuthorizeConfirm();
 						},
 					});
 				}

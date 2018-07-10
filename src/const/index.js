@@ -11,7 +11,7 @@ export const GENDER = {
 };
 
 
-const BASE_URL = __DEV__ ? 'http://192.168.1.108:3002' : 'http://api.trt-health.xuyuntech.com';
+const BASE_URL = __DEV__ ? 'http://192.168.1.186:3002' : 'http://api.trt-health.xuyuntech.com';
 
 // o Register // 挂号
 //   o Visiting // 就诊中
@@ -30,6 +30,7 @@ export const API = {
 	Users: {
 		Login: () => `${BASE_URL}/auth/users/login`,
 		FindByID: (id) => `${BASE_URL}/auth/users/${id}`,
+		UserInfo: () => `${BASE_URL}/auth/users/userinfo`,
 	},
 	ArrangementHistory: {
 		Create: () => `${BASE_URL}/arrangement_history`,
