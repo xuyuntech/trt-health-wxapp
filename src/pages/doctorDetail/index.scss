@@ -48,12 +48,20 @@
 }
 .arrg-item{
 	padding: 10px;
+	.arrg-title {
+		padding-bottom: 5px;
+	}
 	.arrg-content{
 		padding: 0 5px;
 		display: flex;
 		align-items: center;
-		background-color: #f5f5f5;
+		border-bottom: 1px solid #eee;
+		margin-bottom: 5px;
+		padding-bottom: 5px;
 		font-size: 12px;
+		&:last-child{
+			border-bottom: 0;
+		}
 		.arrg-content-l{
 			flex: 1;
 		}

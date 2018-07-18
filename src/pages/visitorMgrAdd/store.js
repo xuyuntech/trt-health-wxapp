@@ -11,6 +11,8 @@ realName: '张三',
 
 var Store = function () {
 	extendObservable(this, {
+		visitorID: '',
+		mode: '',
 		realName: '',
 		gender: '请选择',
 		age: '',

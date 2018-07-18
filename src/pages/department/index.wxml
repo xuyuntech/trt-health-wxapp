@@ -7,7 +7,8 @@
         </view>
     </scroll-view>
     <view class="right">
-        <view wx:for="{{props.store.department2}}"  class="item {{item.id === props.store.selectedDep2ID ? 'selected' : ''}}" bindtap="selectDep2" data-department="{{item.id}}">
+        <view wx:if="{{props.store.loadDep2Msg}}" class="help-text">{{loadDep2Msg}}</view>
+        <view wx:for="{{props.store.selectedDep2}}"  class="item {{item.id === props.store.selectedDep2ID ? 'selected' : ''}}" bindtap="selectDep2" data-department="{{item.id}}">
             {{item.name}}
         </view>
     </view>

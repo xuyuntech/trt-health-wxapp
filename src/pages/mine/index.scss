@@ -1,10 +1,37 @@
 
-.log-list {
-	display: flex;
-	flex-direction: column;
-	padding: 40rpx;
+.avatar{
+	text-align:center;
+	height: 190px;
+	background-color: #0089ef;
 }
 
-.log-item {
-	margin: 10rpx;
+.avatar-pack{
+	text-align:center;
+width:80px;
+padding:40px;
+display:inline-block;
+
+}
+.avatar-bg{
+	width:80px;
+	height:80px;
+	background-color:#bbb;
+	border-radius:50%;
+	background-size: cover;
+	background-position: center;
+}
+.avatar-name{
+	margin-top:10px;
+color:#fff;
+
+}
+.login-btn{
+	display:inline-block;
+background:transparent;
+border:1px solid #fff;
+color:#fff;
+line-height:30px;
+font-size:14px;
+margin-top:65px;
+
 }

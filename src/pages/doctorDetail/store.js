@@ -7,6 +7,10 @@ var Store = function () {
 		doctor: null,
 		arrangementHistories: [],
 	});
+	this.clear = function () {
+		this.doctor = null;
+		this.arrangementHistories = [];
+	};
 };
 
 module.exports = new Store();

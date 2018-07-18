@@ -14,7 +14,6 @@ Page(observer(
 		},
 		async add() {
 			const { realName, sid, age, phone, gender } = store;
-			console.log({realName, sid, age, phone, gender, creator: app.getUsername()});
 			if (!realName) {
 				return wx.showToast({title: '请填写姓名', icon: 'none'});
 			}
@@ -29,14 +28,13 @@ Page(observer(
 			}
 			try {
 				const data = await request({
-					url: API.Visitor.Create(),
-					method: 'POST',
+					url: store.mode === 'edit' ? API.Visitor.Update(store.visitorID) : API.Visitor.Create(),
+					method: store.mode === 'edit' ? 'PUT' : 'POST',
 					data: {
 						realName,
 						sid,
 						age,
 						phone,
-						creator: app.getUsername(),
 						gender: store.genderList.find((item) => item.name === gender).value,
 					},
 				});
@@ -79,8 +77,30 @@ Page(observer(
 				wx.navigateBack();
 			}
 		},
+		async load(visitorID) {
+			if (!visitorID) {
+				console.error('null visitorID');
+				return;
+			}
+			try {
+				const data = await request({
+					url: API.Visitor.FindByID(visitorID),
+				});
+				const { realName, sid, age, phone, gender } = data.result || {};
+				Object.assign(store, {realName, sid, age, phone, gender: store.genderList.find((item) => item.value === gender).name});
+			}
+			catch (err) {
+				console.error(err);
+			}
+		},
 		async onLoad(options) {
 			await delay();
+			const { mode, visitorID } = options;
+			store.mode = mode;
+			store.visitorID = visitorID;
+			if (mode === 'edit') {
+				this.load(visitorID);
+			}
 		},
 	},
 ));

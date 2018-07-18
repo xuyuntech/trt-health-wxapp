@@ -10,14 +10,28 @@ export const GENDER = {
 	'FEMALE': '女',
 };
 
+export const HospitalGrade = {
+	ThirdSpecial: '三级特等', // 三级特等
+	ThridA: '三级甲等', // 三级甲等，下面以此类推
+	ThridB: '三级乙等',
+	ThirdC: '三级丙等',
+	SecondA: '二级甲等',
+	SecondB: '二级乙等',
+	SecondC: '二级丙等',
+	FirstA: '一级甲等',
+	FirstB: '一级乙等',
+	FirstC: '一级甲等',
+};
 
-const BASE_URL = __DEV__ ? 'http://192.168.1.186:3002' : 'http://api.trt-health.xuyuntech.com';
+
+const BASE_URL = __DEV__ ? 'http://192.168.1.104:3002' : 'http://api.trt-health.xuyuntech.com';
 
 // o Register // 挂号
 //   o Visiting // 就诊中
 //   o Finished // 已开处方
 export const REGISTER_STATE = {
-	Register: '已挂号',
+	Init: '未支付',
+	Paid: '已支付',
 	Visiting: '就诊中',
 	Finished: '已开处方',
 };
@@ -53,6 +67,8 @@ export const API = {
 		Create: () => `${BASE_URL}/visitor`,
 		Query: () => `${BASE_URL}/visitor`,
 		FindByID: (id) => `${BASE_URL}/visitor/${id}`,
+		Update: (id) => `${BASE_URL}/visitor/${id}`,
+		DeleteByID: (id) => `${BASE_URL}/visitor/${id}`,
 	},
 	Hospitals: {
 		Query: () => `${BASE_URL}/hospital`,
@@ -65,5 +81,8 @@ export const API = {
 		Update: (name) => `${BASE_URL}/doctor/${name}`,
 		Create: () => `${BASE_URL}/doctor`,
 		FindByName: (name) => `${BASE_URL}/doctor/${name}`,
+	},
+	Order: {
+		Register: () => `${BASE_URL}/order/register`,
 	},
 };

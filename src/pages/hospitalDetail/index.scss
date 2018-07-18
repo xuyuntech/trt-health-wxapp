@@ -40,3 +40,24 @@
 	}
 }
 
+.visit-date-list {
+	height: 40px;
+	background-color: #fff;
+	white-space: nowrap;
+	width: 100%;
+	display: flex;
+}
+.visit-date-item {
+	width:50px;
+	display:inline-block;
+	vertical-align:top;
+	height:100%;
+	text-align:center;
+	border-right: 1px solid #f5f5f5;
+	&.selected {
+		background-color: lighten(#2d8cf0, 10%);
+		color: #fff;
+	}
+}
+.visit-date-item-date {}
+.visit-date-item-day {}

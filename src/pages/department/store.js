@@ -9,10 +9,12 @@ class Store {
 	constructor() {
 		extendObservable(this, {
 			department1: [],
-			department2: [],
+			department2: {},
+			selectedDep2: [],
 			selectedDep1ID: '',
 			selectedDep2ID: '',
 			loadMsg: '',
+			loadDep2Msg: '',
 		});
 	}
 	getSelectedDepartment() {

@@ -30,31 +30,26 @@
     </view> -->
     <view class="reg-list">
         <view wx:if="{{props.store.registerItems.length == 0}}">
-            <view class="mv-5 clr-sub txt-center">{{props.store.listLoadingMsg}}</view>
+            <view class="help-text">{{props.store.listLoadingMsg}}</view>
         </view>
-        <view data-id="{{item.id}}" bindtap="openDetail" wx:key="id" wx:for="{{props.store.registerItems}}" class="card">
-            <view class="card-header">
-                <view class="card-title">{{item.arrangementHistory.visitDate}} {{item.arrangementHistory.visitTime == 'AM'?'上午':'下午'}}</view>
-                <view class="card-actions">{{item.state}}</view>
-            </view>
-            <view class="card-body">
-                <view class="detail-info">
-                    <view style="flex:1;">
-                        <view class="mb-3">
-                            <text class="font-bold">{{item.visitor.realName}}</text> <text class="ml-5">{{item.visitor.gender == 'MALE'?'男':'女'}} {{item.visitor.phone}}</text></view>
-                        <view class="fs-small mb-3"><text class="clr-sub">{{item.visitor.sid}}</text></view>
-                        <view class="fs-small mb-3">
-                            <text class="clr-sub">医院: </text><text>{{item.arrangementHistory.hospital.name}}</text>
-                        </view>
-                        <view class="fs-small mb-3">
-                            <text class="clr-sub">医师: </text>{{item.arrangementHistory.doctor.realName}}
-                        </view>
-                    </view>
-                    <view>
-                        <i-icon type="enter" size="20" color="#80848f" />
-                    </view>
+        <view wx:else class="help-text" style="text-align: left; padding-left: 15px;">挂号单列表</view>
+        <view data-id="{{item.id}}" bindtap="openDetail" wx:key="id" wx:for="{{props.store.registerItems}}" class="cell">
+            <view class="cell-bd">
+                <view class="font-bold">
+                    {{item.visitDate}} {{item.visitTime == 'AM'?'上午':'下午'}}
+                </view>
+                <view class="fs-small mb-3">
+                    <text class="font-bold">{{item.visitor.realName}}</text> <text class="ml-5">{{item.visitor.gender == 'MALE'?'男':'女'}} {{item.visitor.phone}}</text>
+                </view>
+                <view class="fs-small mb-3"><text class="clr-sub">{{item.visitor.sid}}</text></view>
+                <view class="fs-small mb-3">
+                    <text class="clr-sub">医院: </text><text>{{item.hospitalName}}</text>
+                </view>
+                <view class="fs-small mb-3">
+                    <text class="clr-sub">医师: </text>{{item.doctorName}}
                 </view>
             </view>
+            <view class="cell-ft">{{item.state}}</view>
         </view>
     </view>
 </view>

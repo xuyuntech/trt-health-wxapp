@@ -2,6 +2,14 @@
 $padding: 200rpx;
 $color-primary: #2d8cf0;
 $color-sub: #80848f;
+$color-warning: #ff9900;
+$color-success: #19be6b;
+$color-danger: #ed3f14;
+$color-info: #2d8cf0;
+
+.bg-primary {
+	background-color: $color-primary;
+}
 
 .help-text {
 	text-align: center;
@@ -36,6 +44,25 @@ $color-sub: #80848f;
   left: 15px;
   right: 0;
 }
+.border-bottom{
+	position: relative;
+}
+.border-bottom:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 200%;
+  height: 200%;
+  transform: scale(0.5);
+  transform-origin: 0 0;
+  pointer-events: none;
+  box-sizing: border-box;
+  border: 0 solid #e9eaec;
+  border-bottom-width: 1px;
+  left: 15px;
+  right: 0;
+}
 
 .txt-center {
 	text-align: center;
@@ -46,8 +73,17 @@ page {
 	font-size: 14px;
 }
 
+.clr-primary{
+	color: $color-primary;
+}
 .clr-warning{
-	color: #ff9900;
+	color: $color-warning;
+}
+.clr-success{
+	color: $color-success;
+}
+.clr-danger{
+	color: $color-danger;
 }
 
 .clr-sub{
@@ -62,6 +98,27 @@ page {
 	font-size: 14px;
 }
 
+.tag-warning {
+	border:1px solid $color-warning;
+	border-radius:3px;
+	padding:0px 3px;
+	color:$color-warning;
+	box-sizing:border-box;
+	line-height:14px;
+	font-size:12px;
+	display:inline-block;
+}
+.tag-info {
+	border:1px solid $color-info;
+	border-radius:3px;
+	padding:0px 3px;
+	color:$color-info;
+	box-sizing:border-box;
+	line-height:14px;
+	font-size:12px;
+	display:inline-block;
+}
+
 .ml-5{
 	margin-left: 5px;
 }
@@ -70,6 +127,9 @@ page {
 }
 .mb-5{
 	margin-bottom: 5px;
+}
+.mt-5{
+	margin-top: 5px;
 }
 
 .whitespace{
@@ -251,3 +311,5 @@ page {
 		padding: 3px 6px;
 	}
 }
+
+@import "./styles/cell"

@@ -19,7 +19,7 @@ var Store = function () {
 		visitorsIndex: -1,
 		selectedVisitor: null,
 		diseaseInfo: '',
-		arrangementHistory: {},
+		arrangementHistory: null,
 	});
 };
 

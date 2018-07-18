@@ -18,18 +18,18 @@ module.exports = {
     </view>
     <i-cell wx:key="sid" wx:for="{{props.store.visitors}}" data-visitor-id="{{item.id}}" bind:click="selectVisitor">
       <view>
-        <text class="fs-normal mr-5">{{item.realName}}</text>
-        <text class="fs-small mr-5">{{tools.getGender(item.gender)}}</text>
-        <text class="fs-small">{{tools.getAge(item.birthday)}}</text>
-      </view>
-      <view>
-        <text class="clr-sub fs-small">{{item.phone}}</text>
-      </view>
-      <view>
-        <text class="clr-sub fs-small">{{item.sid}}</text>
-      </view>
-      <view>
-        <text class="clr-sub fs-small">{{item.address}}</text>
+        <view>
+          <text class="fs-normal mr-5">{{item.realName}}</text>
+          <text class="fs-small mr-5">{{tools.getGender(item.gender)}}</text>
+          <text class="fs-small mr-5">{{item.age}}</text>
+        </view>
+        <view>
+          <text class="clr-sub fs-small">{{item.phone}}</text>
+        </view>
+        <view>
+          <text class="clr-sub fs-small">{{item.sid}}</text>
+          <view catchtap="deleteVisitor" data-visitor-id="{{item.id}}" class="clr-primary" style="float:right;">删除</view>
+        </view>
       </view>
     </i-cell>
   </i-cell-group>

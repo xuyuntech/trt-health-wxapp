@@ -6,8 +6,16 @@
       <view style="padding:15px;border:0;" class="card">
         <image src="../../images/doctor-avatar.png" style="width:50px;height:50px;min-width:50px;"/>
         <view class="card-right">
-          <view><text class="fs-normal">{{props.store.doctor.realName}}</text><text class="clr-sub fs-small ml-5">{{props.store.doctor.title}}</text></view>
-          <view><text class="clr-warning fs-small">评分 10</text></view>
+          <view>
+            <text class="fs-normal">{{props.store.doctor.realName}}</text>
+            <text class="clr-warning fs-small ml-5">评分 10</text>
+          </view>
+          <view>
+            <text class="tag-warning fs-small mt-5">{{props.store.doctor.title}}</text>
+          </view>
+          <view>
+            <text class="clr-sub fs-small mt-5">{{props.store.doctor.skilledIn}}</text>
+          </view>
         </view>
       </view>
     </i-panel>
@@ -24,12 +32,13 @@
         <view class="mb-5"><text>* {{item.hospital.name}}</text></view>
         <view class="arrg-content" wx:key="id" wx:for="{{item.arrangementHistories}}">
           <view class="arrg-content-l">
-            <view>{{item.visitDate}}</view>
+            <view>{{item.visitDateTime}} <text wx:if="{{item.registerHistoryID}}" class="clr-success">已预约</text></view>
             <view>挂号费: <text class="clr-warning">¥{{item.fee}}</text></view>
             <view>科室: {{item.department1.name}} - {{item.department2.name}}</view>
           </view>
           <view>
-            <i-button type="primary" size="small" i-class="reg-btn" data-arrangement-key="{{item.id}}" bind:click="register">预约</i-button>
+            <i-button  wx:if="{{item.registerHistoryID}}" type="default" size="small" i-class="reg-btn" data-register-history="{{item.registerHistoryID}}" bind:click="openRegisterHistory">查看</i-button>
+            <i-button wx:else type="primary" size="small" i-class="reg-btn" data-arrangement-key="{{item.id}}" bind:click="register">预约</i-button>
           </view>
         </view>
       </view>

@@ -1,6 +1,15 @@
 <view class="container">
-  <view class="whitespace"></view>
-  <i-cell-group>
+  <view class="bg-primary avatar">
+    <view class="avatar-pack" wx:if="{{props.store.userInfo}}">
+      <view class="avatar-bg" style="background-image:url({{props.store.userInfo.avatar}});"></view>
+      <view class="avatar-name">{{props.store.userInfo.realName}}</view>
+    </view>
+    <view class="avatar-pack" wx:else>
+      <view class="avatar-bg"></view>
+      <view class="avatar-name">未登录</view>
+    </view>
+  </view>
+  <!-- <i-cell-group>
     <i-cell>
       <view wx:if="{{props.store.userInfo}}" style="display:flex;align-items:center;">
         <i-avatar src="{{props.store.userInfo.avatar}}" size="large"></i-avatar>
@@ -13,7 +22,7 @@
         <view class="help-text">加载中...</view>
       </view>
     </i-cell>
-  </i-cell-group>
+  </i-cell-group> -->
   <view class="whitespace"></view>
   <i-cell-group>
     <i-cell title="钱包地址"><text class="fs-small clr-sub">{{props.store.userInfo.walletAddress}}</text></i-cell>

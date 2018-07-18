@@ -1,7 +1,7 @@
-import moment from 'moment';
-import { request } from '../../utils';
+import { request, visitDateTime } from '../../utils';
 import { API } from '../../const';
 import { observer } from '../../libs/observer';
+import { toJS } from '../../libs/mobx';
 import store from './store';
 
 const delay = (t = 0) => new Promise((resolve) => setTimeout(resolve, t));
@@ -51,16 +51,14 @@ Page(observer(
 				return wx.showToast({title: '请选择初复诊', icon: 'none'});
 			}
 			const data = {
-				visitor: selectedVisitor.id,
+				visitor: toJS(selectedVisitor),
 				type: store.chufuActions[selectedChufuIndex].value,
-				state: 'Register',
 				diseaseInfo,
-				patient: app.getUsername(),
 				arrangementHistory: store.arrangementHistory.id,
 			};
 			try {
 				await request({
-					url: API.RegisterHistory.Create(),
+					url: API.Order.Register(),
 					method: 'POST',
 					data,
 				});
@@ -69,6 +67,7 @@ Page(observer(
 					content: '预约成功',
 					showCancel: false,
 					success() {
+						app.getPrevPage().reloadArrangements();
 						wx.navigateBack();
 					},
 				});
@@ -84,6 +83,7 @@ Page(observer(
 		},
 		async onLoad(options) {
 			const { arrangementKey } = options;
+			store.arrangementKey = arrangementKey;
 			await delay();
 			try {
 				const data = await request({
@@ -92,7 +92,7 @@ Page(observer(
 				console.log('arrangementHistory', data);
 				store.arrangementHistory = {
 					...data.result,
-					visitDate: moment(data.result.visitDate).format('YYYY-MM-DD'),
+					visitDate: visitDateTime(data.result.visitDate, data.result.visitTime),
 				};
 			}
 			catch (err) {

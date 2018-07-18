@@ -1,13 +1,20 @@
 
-<view class="container" wx:if="{{props.store.loadMsg}}">
-  <view class="help-text">{{props.store.loadMsg}}</view>
-</view>
-<view class="container" wx:else>
+
+<view class="container">
   <i-tabs current="{{ props.store.current }}" bindchange="handleChange">
     <i-tab key="tab1" title="按专家预约"></i-tab>
     <i-tab key="tab2" title="按日期预约"></i-tab>
   </i-tabs>
-  <i-cell-group class="list">
+  <scroll-view scroll-x="true" wx:if="{{props.store.current === 'tab2'}}" class="visit-date-list border-bottom">
+    <view wx:for="{{props.store.visitDates}}" data-visit-date="{{item.fullDate}}" bindtap="selectVisitDate" wx:key="date" class="visit-date-item {{props.store.selectedDate === item.fullDate ? 'selected' : ''}}">
+      <view class="visit-date-item-day">{{item.day}}</view>
+      <view class="visit-date-item-date">{{item.date}}</view>
+    </view>
+  </scroll-view>
+  <view class="container" wx:if="{{props.store.loadMsg}}">
+    <view class="help-text">{{props.store.loadMsg}}</view>
+  </view>
+  <i-cell-group class="list" wx:else>
     <i-cell wx:key="item" wx:for="{{props.store.doctors}}" is-link url="{{item.link}}">
       <view class="list-item">
         <image src="../../images/doctor-avatar.png" style="width:50px;height:50px;min-width:50px;border-radius:50%;"/>
@@ -17,8 +24,8 @@
             <text class="ml-5 clr-sub fs-small">{{item.title}}</text>
           </view>
           <view>
-            <text class="item-tags clr-warning fs-small">评分 10</text>
-            <text class="item-tags clr-sub fs-small">预约量 {{item.reservationQuantity}}</text>
+            <text class="item-tags clr-warning fs-small tag-warning">评分 10</text>
+            <text class="item-tags clr-sub fs-small tag-info">预约量 {{item.reservationQuantity}}</text>
           </view>
           <view>
             <text class="clr-sub fs-small">{{item.description}}</text>

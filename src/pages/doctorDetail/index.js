@@ -1,3 +1,4 @@
+import moment from 'moment';
 import { request, groupArrangementHistoryByHospital } from '../../utils';
 import { API } from '../../const';
 import { observer } from '../../libs/observer';
@@ -15,14 +16,51 @@ Page(observer(
 		handleChange({detail: {key}}) {
 			this.props.store.current = key;
 		},
-		register({target: {dataset: {arrangementKey}}}) {
+		openRegisterHistory({currentTarget: {dataset}}) {
+			const { registerHistory } = dataset;
+			if (!registerHistory) {
+				return;
+			}
+			wx.navigateTo({
+				url: `/pages/registerDetail/index?id=${registerHistory}`,
+			});
+		},
+		register({currentTarget: {dataset: {arrangementKey}}}) {
 			wx.navigateTo({
 				url: `/pages/orderReg/index?arrangementKey=${arrangementKey}`,
 			});
 		},
-		async onLoad(options) {
-			const { name, hospitalID, dep1, dep2 } = options;
-			await delay();
+		async reloadArrangements() {
+			const { hospitalID, dep1, dep2, visitDate } = store.options;
+			try {
+				// fetch arrangementHistories
+				store.loadingMsg = '加载中...';
+				store.arrangementHistories = [];
+				const data1 = await request({
+					url: API.ArrangementHistory.Query(),
+					data: {
+						f: 'true',
+						doctor: store.doctor.name,
+						hospital: hospitalID,
+						department1: dep1,
+						department2: dep2,
+						visitDate,
+					},
+				});
+				let arrangementHistories = groupArrangementHistoryByHospital(data1.results);
+				console.log('arrangementHistories', arrangementHistories);
+				store.arrangementHistories = arrangementHistories;
+				if (!store.arrangementHistories.length) {
+					store.loadingMsg = '暂无排班信息';
+				}
+			}
+			catch (err) {
+				console.error(err);
+			}
+		},
+		async reload() {
+			const { name } = store.options;
+			store.clear();
 			try {
 				const data = await request({
 					url: API.Doctor.FindByName(name),
@@ -34,26 +72,34 @@ Page(observer(
 				wx.setNavigationBarTitle({
 					title: store.doctor.realName,
 				});
-				// fetch arrangementHistories
-				store.loadingMsg = '加载中...';
-				const arrangementHistories = await request({
-					url: API.ArrangementHistory.Query(),
-					data: {
-						f: 'true',
-						doctor: store.doctor.name,
-						hospital: hospitalID,
-						department1: dep1,
-						department2: dep2,
-					},
-				});
-				store.arrangementHistories = groupArrangementHistoryByHospital(arrangementHistories.results);
-				if (!store.arrangementHistories.length) {
-					store.loadingMsg = '暂无排班信息';
-				}
+				this.reloadArrangements();
+				// // fetch arrangementHistories
+				// store.loadingMsg = '加载中...';
+				// const data1 = await request({
+				// 	url: API.ArrangementHistory.Query(),
+				// 	data: {
+				// 		f: 'true',
+				// 		doctor: store.doctor.name,
+				// 		hospital: hospitalID,
+				// 		department1: dep1,
+				// 		department2: dep2,
+				// 		visitDate,
+				// 	},
+				// });
+				// let arrangementHistories = groupArrangementHistoryByHospital(data1.results);
+				// console.log('arrangementHistories', arrangementHistories);
+				// store.arrangementHistories = arrangementHistories;
+				// if (!store.arrangementHistories.length) {
+				// 	store.loadingMsg = '暂无排班信息';
+				// }
 			}
 			catch (err) {
 				console.error(err);
 			}
+		},
+		async onLoad(options) {
+			store.options = options;
+			this.reload();
 		},
 	},
 ));

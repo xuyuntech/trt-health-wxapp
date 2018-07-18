@@ -10,7 +10,7 @@
             <view class="infoview">
                 <view class="info-line">
                     <view class="info-title">挂号单号:</view>
-                    <view class="info-text">{{props.store.registerHistory.id}}</view>
+                    <view class="info-text">{{props.store.registerHistory.number}}</view>
                 </view>
                 <view class="info-line">
                     <view class="info-title">状态:</view>
@@ -56,7 +56,7 @@
             </view>
         </view>
     </view>
-    <view class="panel">
+    <view class="panel" style="display:none;">
         <view class="panel-header">
             处方信息
         </view>

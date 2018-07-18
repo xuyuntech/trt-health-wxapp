@@ -21,17 +21,24 @@ export function formatTime(date) {
 	);
 }
 
-let authInfo = wx.getStorageSync('auth_info');
+export function visitDateTime(visitDate, visitTime) {
+	return `${moment(visitDate).format('YYYY-MM-DD')} ${visitTime === 'AM' ? '上午' : '下午'}`;
+}
+
+
+let access_token = wx.getStorageSync('access_token');
+let user_id = wx.getStorageSync('user_id');
 
 function getRequestHeader() {
-	if (!authInfo) {
-		authInfo = wx.getStorageSync('auth_info');
+	if (!access_token) {
+		access_token = wx.getStorageSync('access_token');
 	}
-	const { accessToken, userID, username } = authInfo;
+	if (!user_id) {
+		user_id = wx.getStorageSync('user_id');
+	}
 	return {
-		'X-Access-Token': accessToken,
-		'X-Access-UserID': userID,
-		'X-Access-Username': username,
+		'X-Access-Token': access_token,
+		'X-Access-UserID': user_id,
 	};
 }
 
@@ -60,7 +67,9 @@ export async function request({url, headers, method = 'GET', data}) {
 				}
 				else if (data.status === 401) {
 					console.log('401 --->>>');
-					authInfo = null;
+					// authInfo = null;
+					access_token = null;
+					user_id = null;
 					const app = getApp();
 					app.clearStorage();
 					app.login();
@@ -96,8 +105,7 @@ export function groupArrangementHistoryByHospital(results) {
 		}
 		m[item.hospital.name].arrangementHistories.push({
 			...item,
-			visitDate: moment(item.visitDate).format('YYYY-MM-DD'),
-			visitTime: item.visitTime === 'AM' ? '上午' : '下午',
+			visitDateTime: `${moment(item.visitDate).format('YYYY-MM-DD')} ${item.visitTime === 'AM' ? '上午' : '下午'}`,
 		});
 	});
 	return Object.keys(m).map((key) => ({...m[key], hospitalID: m[key].hospital.id}));

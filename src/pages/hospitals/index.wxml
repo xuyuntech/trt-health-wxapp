@@ -5,25 +5,27 @@
       <image src="{{item}}" class="slide-image" style="width: 100%;"/>
     </swiper-item>
   </swiper>
-  <i-tabs current="{{ props.store.current }}" bindchange="handleChange">
+  <i-tabs style="display:none;" current="{{ props.store.current }}" bindchange="handleChange">
     <i-tab key="tab1" title="综合排序"></i-tab>
     <i-tab key="tab2" title="离我最近"></i-tab>
     <i-tab key="tab3" title="预约量↓"></i-tab>
   </i-tabs>
   <i-cell-group class="list">
-    <view class="help-text" wx:if="{{props.store.hospitals.length == 0}}">
-      加载中
+    <view class="help-text" wx:if="{{props.store.loadMsg}}">
+      {{props.store.loadMsg}}
     </view>
     <i-cell wx:key="item" wx:for="{{props.store.hospitals}}" is-link url="{{item.link}}">
       <view class="list-item">
-        <!-- <image src="http://via.placeholder.com/50x50" style="width:50px;height:50px;min-width:50px;"/> -->
+        <!-- <image src="../../images/hospital-avatar.png" style="width:80px;height:80px;min-width:80px;"/> -->
+        <view style="width:80px;height:80px;min-width:80px;background-image:url(../../images/hospital-avatar.png);background-size:cover;background-position: center;"></view>
         <view class="item-content">
           <view>{{item.name}}</view>
-          <view class="fs-small clr-sub">{{item.address}}</view>
-          <view class="fs-small clr-sub">{{item.phone}} <text style="display: none;">预约量 {{item.reservationQuantity}}</text></view>
-          <view style="display:none;">
-            <text class="item-tags clr-warning fs-small">{{item.grade}}</text>
+          <view style="margin-top:3px;">
+            <text wx:if="{{item.gradeStr}}" class="tag-warning fs-small mr-5">{{item.gradeStr}}</text>
+            <text class="tag-info fs-small">预约量 {{item.reservationQuantity || 0}}</text>
           </view>
+          <view style="margin-top:3px;" class="fs-small clr-sub"><i-icon type="coordinates" size="16" style="vertical-align:top;" color="#2d8cf0" /> {{item.address}}</view>
+          <view class="fs-small clr-sub"><i-icon type="mobilephone" size="16" style="vertical-align:top;" color="#2d8cf0" /> {{item.phone}}</view>
         </view>
       </view>
     </i-cell>

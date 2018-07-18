@@ -2,21 +2,21 @@ import { formatTime } from '../../utils';
 import { observer } from '../../libs/observer';
 import store from './store';
 
+const delay = (t = 0) => new Promise((resolve) => setTimeout(resolve, t));
+
 Page(observer(
 	{
 		props: {
 			store,
 		},
-		onShow() {
-			// store.userInfo = getApp().getUserInfo();
+		getUserInfo(res) {
+			console.log(res);
 		},
-		onLoad() {
-			store.loadUserInfo();
-			this.setData({
-				logs: (wx.getStorageSync('logs') || []).map(function (log) {
-					return formatTime(new Date(log));
-				}),
-			});
+		async onShow() {
+			await delay();
+			if (!store.userInfo) {
+				store.loadUserInfo();
+			}
 		},
 	},
 ));

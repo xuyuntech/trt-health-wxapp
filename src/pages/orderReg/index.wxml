@@ -22,7 +22,10 @@ module.exports = {
 </wxs>
 
 <view class="container">
-  <i-panel>
+  <i-panel wx:if="{{!props.store.arrangementHistory}}">
+    <view class="help-text">加载中</view>
+  </i-panel>
+  <i-panel wx:else>
     <view style="padding:15px;border: 0;" class="card">
       <image src="../../images/doctor-avatar.png" style="width:50px;height:50px;min-width:50px;"/>
       <view class="card-right">
