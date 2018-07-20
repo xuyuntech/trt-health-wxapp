@@ -1,7 +1,7 @@
 {
   "pages":[
-    "pages/authorize/index",
     "pages/hospitals/index",
+    "pages/authorize/index",
     "pages/orderReg/index",
     "pages/department/index",
     "pages/registerHistories/index",

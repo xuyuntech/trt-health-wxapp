@@ -16,8 +16,8 @@
     </view>
     <i-cell wx:key="item" wx:for="{{props.store.hospitals}}" is-link url="{{item.link}}">
       <view class="list-item">
-        <!-- <image src="../../images/default-hospital-avatar.jpg" style="width:80px;height:80px;min-width:80px;"/> -->
-        <view style="width:80px;height:80px;min-width:80px;background-image:url(../../images/default-hospital-avatar.jpg);background-size:cover;background-position: center;"></view>
+        <image src="../../images/default-hospital-avatar.png" style="width:80px;height:80px;min-width:80px;"/>
+        <!-- <view style="width:80px;height:80px;min-width:80px;background-image:url(../../images/default-hospital-avatar.png);background-size:cover;background-position: center;"></view> -->
         <view class="item-content">
           <view>{{item.name}}</view>
           <view style="margin-top:3px;">
