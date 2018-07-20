@@ -34,18 +34,24 @@ Page(observer(
 			const { hospitalID, dep1, dep2, visitDate } = store.options;
 			try {
 				// fetch arrangementHistories
+				const body = {
+					f: 'true',
+					doctor: store.doctor.name,
+					hospital: hospitalID,
+					department1: dep1,
+					department2: dep2,
+				};
+				if (visitDate) {
+					body.visitDate = visitDate;
+				}
+				else {
+					body.fromVisitDate = moment().format('YYYY-MM-DD');
+				}
 				store.loadingMsg = '加载中...';
 				store.arrangementHistories = [];
 				const data1 = await request({
 					url: API.ArrangementHistory.Query(),
-					data: {
-						f: 'true',
-						doctor: store.doctor.name,
-						hospital: hospitalID,
-						department1: dep1,
-						department2: dep2,
-						visitDate,
-					},
+					data: body,
 				});
 				let arrangementHistories = groupArrangementHistoryByHospital(data1.results);
 				console.log('arrangementHistories', arrangementHistories);

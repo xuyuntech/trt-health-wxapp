@@ -1,4 +1,6 @@
 <view class="container">
-  <view style="height:100px;"></view>
+  <view style="text-align:center;padding: 20px 0;">
+    <image src="../../images/authorize_bg.png" style="width: 250px;height: 204px;display: inline-block;" />
+  </view>
   <button style="margin: 10px;" class="btn btn-primary" open-type="getUserInfo" bindgetuserinfo="success">授权微信用户信息</button> 
 </view>
