@@ -28,6 +28,9 @@ Page(observer(
 		hospitalChange({detail: {value}}) {
 			store.hospitalIndex = value;
 		},
+		paid() {
+			store.paid();
+		},
 		submit(e) {
 			console.log(e);
 			const { visitTimeIndex, hospitalIndex, doctorIndex, visitDate } = store;

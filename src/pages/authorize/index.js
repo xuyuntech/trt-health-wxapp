@@ -95,37 +95,13 @@ Page(observer(
 								},
 							});
 							console.log('认证成功');
+							getApp().mineCallback && getApp().mineCallback();
 							wx.navigateBack();
 						}
 						catch (err) {
 							console.error(`认证失败:${err}`);
 							self.reAuthorizeConfirm(err);
 						}
-
-						// wx.request({
-						// 	url: API.Auth.WechatCallback(code),
-						// 	complete() {
-						// 		wx.hideLoading();
-						// 	},
-						// 	success: function (res) {
-						// 		console.log('wechat callback res: ', res);
-						// 		const { result } = res.data;
-						// 		if (!result) {
-						// 			console.error('auth failed: ', res);
-						// 			return;
-						// 		}
-						// 		const { accessToken, userID } = result;
-						// 		console.log('accessToken, userID', {accessToken, userID});
-						// 		wx.setStorageSync('access_token', accessToken);
-						// 		wx.setStorageSync('user_id', userID);
-						// 		self.getUserInfoSuccess(detail);
-						// 	},
-						// 	fail(res) {
-						// 		console.log('wechat callback err:', res);
-						// 		self.clearStorage();
-						// 		self.reAuthorizeConfirm();
-						// 	},
-						// });
 					}
 					else {
 						console.error('wx.login err', res);

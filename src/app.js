@@ -26,9 +26,13 @@ App({
 		const prevPage = routers[routers.length - 2];
 		return prevPage;
 	},
+	mineCallback: null,
 	login() {
-		wx.navigateTo({
-			url: '/pages/authorize/index',
+		wx.switchTab({
+			url: '/pages/mine/index',
 		});
+		// wx.navigateTo({
+		// 	url: '/pages/authorize/index',
+		// });
 	},
 });

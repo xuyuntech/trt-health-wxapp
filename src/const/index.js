@@ -24,7 +24,7 @@ export const HospitalGrade = {
 };
 
 
-const BASE_URL = __DEV__ ? 'http://192.168.1.109:3002' : 'http://api.trt-health.xuyuntech.com';
+const BASE_URL = __DEV__ ? 'http://192.168.1.186:3002' : 'http://api.trt-health.xuyuntech.com';
 
 // o Register // 挂号
 //   o Visiting // 就诊中
@@ -62,6 +62,7 @@ export const API = {
 		Create: () => `${BASE_URL}/register_history`,
 		Query: () => `${BASE_URL}/register_history`,
 		FindByID: (id) => `${BASE_URL}/register_history/${id}`,
+		Paid: (id) => `${BASE_URL}/register_history/paid/${id}`,
 	},
 	Visitor: {
 		Create: () => `${BASE_URL}/visitor`,

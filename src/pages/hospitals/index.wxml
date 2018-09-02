@@ -2,7 +2,7 @@
   <swiper indicator-dots="{{props.store.indicatorDots}}"
     autoplay="{{props.store.autoplay}}" interval="{{props.store.interval}}" duration="{{props.store.duration}}">
     <swiper-item wx:key="item" wx:for="{{props.store.imgUrls}}">
-      <image src="{{item}}" class="slide-image" style="width: 100%;"/>
+      <view style="background-image:url({{item}})" class="slide-image"/>
     </swiper-item>
   </swiper>
   <i-tabs style="display:none;" current="{{ props.store.current }}" bindchange="handleChange">

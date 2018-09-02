@@ -42,7 +42,7 @@ function getRequestHeader() {
 	};
 }
 
-export async function request({url, headers, method = 'GET', data}) {
+export async function request({url, headers, method = 'GET', data}, { autoLogin = true } = {}) {
 	return new Promise((resolve, reject) => {
 		wx.showLoading({
 			title: '加载中',
@@ -72,7 +72,11 @@ export async function request({url, headers, method = 'GET', data}) {
 					user_id = null;
 					const app = getApp();
 					app.clearStorage();
-					app.login();
+					if (autoLogin) {
+						console.log('request 401 , autoLogin ');
+						app.login();
+					}
+					reject({status: 401}); //eslint-disable-line
 				}
 				else if (data.status !== 0) {
 					wx.showModal({

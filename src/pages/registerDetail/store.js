@@ -14,6 +14,31 @@ var TodoStore = function () {
 
 		registerHistory: null,
 	});
+	this.paid = async function () {
+		const self = this;
+		try {
+			await request({
+				url: API.RegisterHistory.Paid(this.registerHistory.id),
+				method: 'PUT',
+			});
+			wx.showModal({
+				title: '提示',
+				content: '操作成功',
+				showCancel: false,
+				success() {
+					self.load(self.registerHistory.id);
+				},
+			});
+		}
+		catch (err) {
+			console.error(err);
+			wx.showModal({
+				title: '操作失败',
+				content: `${err}`,
+				showCancel: false,
+			});
+		}
+	};
 	this.load = async function (id) {
 		try {
 			const data = await request({

@@ -29,7 +29,7 @@
   "window":{
     "backgroundTextStyle":"light",
     "navigationBarBackgroundColor": "#0089ef",
-    "navigationBarTitleText": "在线智能问诊",
+    "navigationBarTitleText": "虚云医馆",
     "navigationBarTextStyle":"white"
   }
 }

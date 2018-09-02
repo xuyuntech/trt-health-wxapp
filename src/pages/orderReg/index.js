@@ -43,6 +43,7 @@ Page(observer(
 			store.chufuShow = false;
 		},
 		async submit() {
+			const self = this;
 			const { selectedVisitor, selectedChufuIndex, diseaseInfo } = store;
 			if (!selectedVisitor) {
 				return wx.showToast({title: '请选择就诊人', icon: 'none'});
@@ -57,14 +58,41 @@ Page(observer(
 				arrangementHistory: store.arrangementHistory.id,
 			};
 			try {
-				await request({
+				const res = await request({
 					url: API.Order.Register(),
 					method: 'POST',
 					data,
 				});
+				const { registerHistory } = res.result;
 				wx.showModal({
 					title: '提示',
 					content: '预约成功',
+					showCancel: false,
+					success() {
+						self.paySheet(registerHistory);
+						// app.getPrevPage().reloadArrangements();
+						// wx.navigateBack();
+					},
+				});
+			}
+			catch (err) {
+				console.error(err);
+				wx.showModal({
+					title: '操作失败',
+					content: `${err}`,
+					showCancel: false,
+				});
+			}
+		},
+		async paid(registerHistory) {
+			try {
+				await request({
+					url: API.RegisterHistory.Paid(registerHistory),
+					method: 'PUT',
+				});
+				wx.showModal({
+					title: '提示',
+					content: '操作成功',
 					showCancel: false,
 					success() {
 						app.getPrevPage().reloadArrangements();
@@ -80,6 +108,22 @@ Page(observer(
 					showCancel: false,
 				});
 			}
+		},
+		paySheet(registerHistory) {
+			const self = this;
+			wx.showActionSheet({
+				itemList: ['线下支付', '微信支付'],
+				success: function (res) {
+					const { tapIndex } = res;
+					console.log(res.tapIndex);
+					if (tapIndex === 0) {
+						self.paid(registerHistory);
+					}
+				},
+				fail: function (res) {
+					console.log(res.errMsg);
+				},
+			});
 		},
 		async onLoad(options) {
 			const { arrangementKey } = options;

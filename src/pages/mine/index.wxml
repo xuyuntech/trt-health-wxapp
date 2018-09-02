@@ -1,35 +1,29 @@
-<view class="container">
-  <view class="bg-primary avatar">
-    <view class="avatar-pack" wx:if="{{props.store.userInfo}}">
-      <view class="avatar-bg" style="background-image:url({{props.store.userInfo.avatar}});"></view>
-      <view class="avatar-name">{{props.store.userInfo.realName}}</view>
+<view class="container" wx:if="{{props.store.loaded}}">
+  <view wx:if="{{!props.store.userInfo}}">
+    <view style="text-align:center;padding: 20px 0;">
+      <image src="../../images/authorize_bg.png" style="width: 250px;height: 204px;display: inline-block;" />
     </view>
-    <view class="avatar-pack" wx:else>
-      <view class="avatar-bg"></view>
-      <view class="avatar-name">未登录</view>
-    </view>
+    <button style="margin: 10px;" class="btn btn-primary" open-type="getUserInfo" bindgetuserinfo="success">授权微信用户信息</button> 
   </view>
-  <!-- <i-cell-group>
-    <i-cell>
-      <view wx:if="{{props.store.userInfo}}" style="display:flex;align-items:center;">
-        <i-avatar src="{{props.store.userInfo.avatar}}" size="large"></i-avatar>
-        <view class="ml-5">
-          <view>{{props.store.userInfo.realName}}</view>
-          <view class="fs-small clr-sub">积分: <text class="clr-warning">{{props.store.userInfo.points}}</text></view>
-        </view>
+  <view wx:else>
+    <view class="bg-primary avatar">
+      <view class="avatar-pack" wx:if="{{props.store.userInfo}}">
+        <view class="avatar-bg" style="background-image:url({{props.store.userInfo.avatar}});"></view>
+        <view class="avatar-name">{{props.store.userInfo.realName}}</view>
       </view>
-      <view wx:else>
-        <view class="help-text">加载中...</view>
+      <view class="avatar-pack" wx:else bindtap="login">
+        <view class="avatar-bg"></view>
+        <view class="avatar-name">点击登录</view>
       </view>
-    </i-cell>
-  </i-cell-group> -->
-  <view class="whitespace"></view>
-  <i-cell-group>
-    <i-cell title="钱包地址"><text class="fs-small clr-sub">{{props.store.userInfo.walletAddress}}</text></i-cell>
-  </i-cell-group>
-  <view class="whitespace"></view>
-  <i-cell-group>
-    <i-cell title="就诊人管理" is-link url="/pages/visitorMgr/index?from=mine"></i-cell>
-    <i-cell title="挂号记录"  is-link url="/pages/registerHistories/index"></i-cell>
-  </i-cell-group>
+    </view>
+    <view class="whitespace"></view>
+    <i-cell-group>
+      <i-cell title="钱包地址"><text class="fs-small clr-sub">{{props.store.userInfo.walletAddress}}</text></i-cell>
+    </i-cell-group>
+    <view class="whitespace"></view>
+    <i-cell-group>
+      <i-cell title="就诊人管理" is-link url="/pages/visitorMgr/index?from=mine"></i-cell>
+      <i-cell title="挂号记录"  is-link url="/pages/registerHistories/index"></i-cell>
+    </i-cell-group>
+  </view>
 </view>
